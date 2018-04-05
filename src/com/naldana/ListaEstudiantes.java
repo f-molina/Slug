@@ -19,6 +19,10 @@ public class ListaEstudiantes {
         estudiantes = new ArrayList<>();
     }
     
+    /**
+     * Añadir un estudiante a la lista
+     * Obtiene los valor desde teclado
+     */
     public void add() {
         Estudiante estudiante = new Estudiante();
         
@@ -38,6 +42,19 @@ public class ListaEstudiantes {
         System.out.print(": ");
         estudiante.setCarnet(leer.next());
         
+        
+    }
+    
+    public void add(Estudiante estudiante) throws Exception{
+        if(estudiante != null) {
+            if (!estudiantes.contains(estudiante)) {
+                estudiantes.add(estudiante);
+            }
+            Exception e = new Exception("No se permiten datos duplicados");
+            throw e;
+        } else {
+            throw new Exception("No se puede agregar un estudiante nulo");
+        }
         
     }
     
