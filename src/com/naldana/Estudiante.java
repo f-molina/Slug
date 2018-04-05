@@ -5,16 +5,17 @@
  */
 package com.naldana;
 
+import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Guardar a un estudiante
  * @author Néstor Aldana <nexxtor at naldana.com>
  */
 public class Estudiante {
-    private String nombres;
-    private String apellidos;
-    private String carnet;
-    
-    
+    private String nombres, apellidos, carnet;
+       
     public Estudiante() {}
 
     public Estudiante(String nombres, String apellidos){
@@ -56,8 +57,32 @@ public class Estudiante {
     public String toString() {
         return "Estudiante{" + "nombres=" + nombres + ", apellidos=" + apellidos + ", carnet=" + carnet + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.carnet);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Estudiante other = (Estudiante) obj;
+        if (!Objects.equals(this.carnet, other.carnet)) {
+            return false;
+        }
+        return true;
+    }
     
-   
     
     
     public static void main(String ... args) {
@@ -71,7 +96,18 @@ public class Estudiante {
         
         Menu menu = Menu.getInstance();
        
-        menu.mostrar();
+        //menu.mostrar();
+        
+        ListaEstudiantes lista = new ListaEstudiantes();
+               
+        try {
+            lista.add(new Estudiante("Néstor", "Aldana", "00031111"));
+            Estudiante e = new Estudiante();
+            e.setCarnet("00031111");
+            lista.add(e);
+        } catch (Exception ex) {
+            Logger.getLogger(Estudiante.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
    
 }
