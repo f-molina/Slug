@@ -24,24 +24,23 @@ public class InscripcionDb implements metodos<Inscripcion>{
     
     private static final Conexion con =  Conexion.conectar();
     
-    private static final String SQL_INSERT = "INSERT INTO inscripciones (id, numAfiliacion, nombres, apellidos,  edad, profesion, estado) VALUES(?,?,?,?)";
-    private static final String SQL_UPDATE = "UPDATE inscripciones SET numAfiliacion=?, nombres=?, apellidos=?, edad=?, profesion=?, estado=? WHERE id=?";
-    private static final String SQL_DELETE = "DELETE FROM inscripciones WHERE id=?";
-    private static final String SQL_READ = "SELECT * FROM inscripciones WHERE id=? ";
-    private static final String SQL_READALL = "SELECT * FROM inscripciones";
+    private static final String SQL_INSERT = "INSERT INTO personas (id, numAfiliacion, nombres, apellidos,  edad, profesion, estado) VALUES(?,?,?,?,?,?)";
+    private static final String SQL_UPDATE = "UPDATE personas SET numAfiliacion=?, nombres=?, apellidos=?, edad=?, profesion=?, estado=? WHERE id=?";
+    private static final String SQL_DELETE = "DELETE FROM personas WHERE id=?";
+    private static final String SQL_READ = "SELECT * FROM personas WHERE id=? ";
+    private static final String SQL_READALL = "SELECT * FROM personas";
 
     @Override
     public boolean create(Inscripcion i) {
         PreparedStatement ps;
         try{
             ps = con.getCnx().prepareStatement(SQL_INSERT);
-            ps.setInt(1, i.getId());
-            ps.setString(2, i.getAfp());
-            ps.setString(3, i.getNombre());
-            ps.setString(4, i.getApellidos());
-            ps.setInt(5, i.getEdad());
-            ps.setString(6, i.getProfesion());
-            ps.setBoolean(7, true);
+            ps.setString(1, i.getAfp());
+            ps.setString(2, i.getNombre());
+            ps.setString(3, i.getApellidos());
+            ps.setInt(4, i.getEdad());
+            ps.setString(5, i.getProfesion());
+            ps.setBoolean(6, true);
             if(ps.executeUpdate()>0){
                 return true;
             }
