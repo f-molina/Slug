@@ -59,6 +59,10 @@ public class Consulta extends JFrame{
         container.add(lbledad);
         container.add(lblprofesion);
         container.add(lblestado);
+        container.add(afp);
+        container.add(nombre);
+        container.add(apellido);
+        container.add(edad);
         container.add(si);
         container.add(no);
         container.add(buscar);
@@ -67,6 +71,7 @@ public class Consulta extends JFrame{
         container.add(eliminar);
         container.add(limpiar);
         container.add(table);
+        container.add(profesion);
         setSize(600,600);
         eventos();
         
@@ -81,10 +86,10 @@ public class Consulta extends JFrame{
         lblestado = new JLabel("Estado");
         lblafp.setBounds(10, 10, ANCHOC, ALTOC);
         lblnombre.setBounds(10, 60, ANCHOC, ALTOC);
-        lblapellido.setBounds(10, 100, ANCHOC, ALTOC);
-        lbledad.setBounds(10, 140, ANCHOC, ALTOC);
-        lblprofesion.setBounds(10, 140, ANCHOC, ALTOC);
-        lblestado.setBounds(10, 140, ANCHOC, ALTOC);
+        lblapellido.setBounds(315, 60, ANCHOC, ALTOC);
+        lbledad.setBounds(10, 100, ANCHOC, ALTOC);
+        lblprofesion.setBounds(315, 100, ANCHOC, ALTOC);
+        lblestado.setBounds(10, 150, ANCHOC, ALTOC);
     }
     
     public final void formulario(){
@@ -115,9 +120,9 @@ public class Consulta extends JFrame{
         
         afp.setBounds(140,10,ANCHOC,ALTOC);
         nombre.setBounds(140,60,ANCHOC,ALTOC);
-        apellido.setBounds(140,100,ANCHOC,ALTOC);
+        apellido.setBounds(400,60,ANCHOC,ALTOC);
         edad.setBounds(140,100,ANCHOC,ALTOC);
-        profesion.setBounds(140,100,ANCHOC,ALTOC);
+        profesion.setBounds(350,150,ANCHOC,ALTOC);
         si.setBounds(140,140,50,ALTOC);
         no.setBounds(210,140,50,ALTOC);
         
@@ -141,6 +146,10 @@ public class Consulta extends JFrame{
                         return String.class;
                         case 2:
                         return String.class;
+                        case 3:
+                            return String.class;
+                        case 4:
+                            return String.class;
                         default:
                         return Boolean.class;
                 }

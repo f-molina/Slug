@@ -129,7 +129,7 @@ public class InscripcionDb implements metodos<Inscripcion>{
             s = con.getCnx().prepareStatement(SQL_READALL);
             rs = s.executeQuery(SQL_READALL);
             while(rs.next()){
-                all.add(new Inscripcion(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getBoolean(7)));
+                all.add(new Inscripcion(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getBoolean(5)));
             }
             rs.close();
         }catch(SQLException ex){

@@ -44,6 +44,16 @@ public class Inscripcion {
         this.edad = edad;
         this.afp = afp;
     }
+
+    public Inscripcion(String nombre, String apellidos, String profesion, String afp, boolean estado) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.profesion = profesion;
+        this.afp = afp;
+        this.estado = estado;
+    }
+    
+    
     
     
 
