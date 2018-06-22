@@ -17,30 +17,25 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class Lol extends StateBasedGame{
     
-    // Game state identifiers
-    public static final int SPLASHSCREEN = 0;
     public static final int MAINMENU     = 1;
     public static final int GAME         = 2;
 
-    // Application Properties
     public static final int WIDTH   = 950;
     public static final int HEIGHT  = 600;
     public static final int FPS     = 60;
     public static final double VERSION = 1.0;
 
-    // Class Constructor
     public Lol(String appName) {
         super("SlugTest");
     }
 
-    // Initialize your game states (calls init method of each gamestate, and set's the state ID)
+    // llama los states de cada clase con su id
     public void initStatesList(GameContainer gc) throws SlickException {
-        // The first state added will be the one that is loaded first, when the application is launched
+        //va por orden
         this.addState(new Menu());
         this.addState(new Game());
     }
 
-    // Main Method
     public static void main(String[] args) {
         try {
             AppGameContainer app = new AppGameContainer(new Lol("My Game v" + VERSION));
