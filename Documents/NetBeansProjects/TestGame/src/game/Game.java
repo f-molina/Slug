@@ -4,47 +4,36 @@
  * and open the template in the editor.
  */
 package game;
+
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 /**
  *
  * @author Frank
  */
-public class Test extends BasicGame {
+public class Game extends BasicGameState {
 
+    public static final int ID = 2;
     private TiledMap grassMap;
     private Animation sprite, up, down, left, right;
     private float x = 60f, y = 350f;
     private static final int SIZE = 32;
-    private float jumpStrength, weight, speed;
-
-    public Test() {
-        super("Slug Test");
-    }
     
-    public static void main(String[] arguments) {
-        try {
-            AppGameContainer app = new AppGameContainer(new Test());
-            app.setDisplayMode(950, 600, false);
-            app.start();
-
-        } catch (SlickException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public int getID() {
+        return Game.ID;
     }
 
     @Override
-    public void init(GameContainer container) throws SlickException {
-        speed = 3;
-        weight =1;
+    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         Image[] movementUp = {new Image("data/lol.png"), new Image("data/lol.png")};
         Image[] movementDown = {new Image("data/lol.png"), new Image("data/lol.png")};
         Image[] movementLeft = {new Image("data/lol.png"), new Image("data/lol.png")};
@@ -61,7 +50,14 @@ public class Test extends BasicGame {
     }
 
     @Override
-    public void update(GameContainer container, int delta) throws SlickException {
+    public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
+        grassMap.render(0, 0);
+        sprite.draw((int) x, (int) y);
+
+    }
+
+    @Override
+    public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
         
         Input input = container.getInput();
         if (input.isKeyPressed(Input.KEY_SPACE)) {
@@ -86,11 +82,5 @@ public class Test extends BasicGame {
             x += delta * 0.1f;
         }
     }
-
-    public void render(GameContainer container, Graphics g) throws SlickException {
-        grassMap.render(0, 0);
-        sprite.draw((int) x, (int) y);
-    }
-
+    
 }
-
