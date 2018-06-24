@@ -6,6 +6,7 @@
 package game;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -26,6 +27,9 @@ public class Game extends BasicGameState {
     private Animation sprite, up, down, left, right;
     private float x = 60f, y = 350f;
     private static final int SIZE = 32;
+    private float xMap=0, yMap=0;
+    private boolean jumping;
+    private float verticalSpeed;
     
     @Override
     public int getID() {
@@ -46,13 +50,18 @@ public class Game extends BasicGameState {
         left = new Animation(movementLeft, duration, false);
         right = new Animation(movementRight, duration, false);
 
+        jumping = false;
+        verticalSpeed = 0.0f;
         sprite = right;
     }
 
     @Override
-    public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
-        grassMap.render(0, 0);
+    public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+        grassMap.render((int) xMap, (int) yMap);
         sprite.draw((int) x, (int) y);
+        g.drawString("Posicion x: " +x + " Posicion y: " +y, 550,50);
+        g.drawString("Posicion xMapa: " +xMap + " Posicion yMapa: " +yMap, 550,150);
+        g.setColor(Color.yellow);
 
     }
 
@@ -60,26 +69,45 @@ public class Game extends BasicGameState {
     public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
         
         Input input = container.getInput();
-        if (input.isKeyPressed(Input.KEY_SPACE)) {
-            /*jumpStrength =delta*150f;
-            y-=delta*jumpStrength;
-            jumpStrength-=weight;*/
-            y-=delta*30f;
+        if (input.isKeyPressed(Input.KEY_SPACE)&&!jumping) {
+            verticalSpeed = -0.50f*delta;
+            jumping = true;
             //sprite = up;
             //sprite.update(delta);
             // mas bajo el delta mas bajo animara el sprite
-        }else if (input.isKeyDown(Input.KEY_DOWN)) {
+        }
+        if(jumping){
+            verticalSpeed+=0.01f*delta;
+        }
+        y+=verticalSpeed;
+        if(y>=349f){
+            jumping = false;
+            verticalSpeed=0.0f;
+        }
+        
+        
+        if (input.isKeyDown(Input.KEY_DOWN)) {
             sprite = down;
             sprite.update(delta);
             y += delta * 0.1f;
+            if(y>350){
+                y -= delta * 0.1f;
+            }
         } else if (input.isKeyDown(Input.KEY_LEFT)) {
-            sprite = left;
+            /*sprite = left;
             sprite.update(delta);
-            x -= delta * 0.1f;
+            x -= delta * 0.1f;*/
+            xMap += delta*0.1f;
         } else if (input.isKeyDown(Input.KEY_RIGHT)) {
-            sprite = right;
-            sprite.update(delta);
-            x += delta * 0.1f;
+            xMap -= delta*0.1f;
+            if(xMap <-60 && y >213){
+                xMap += delta*0.1f;
+            }
+            
+            /*sprite = right;
+            sprite.update(delta);*/
+            //x += delta * 0.1f;     
+        
         }
     }
     
