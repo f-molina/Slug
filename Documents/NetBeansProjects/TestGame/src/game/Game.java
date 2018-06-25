@@ -5,7 +5,6 @@
  */
 package game;
 
-import java.util.ArrayList;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -34,6 +33,11 @@ public class Game extends BasicGameState {
     private ControladorBala balas;
     private SpriteMovil jugador;
     private Input entrada;
+    Image b, r;//b: imagen background, r: imagen de roca
+    int maxHealth = 100;
+    int currentHealth=50;
+    private boolean quit = false;
+
    
     @Override
     public int getID() {
@@ -43,6 +47,8 @@ public class Game extends BasicGameState {
     
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        b = new Image("data/b2.png");
+        r = new Image("data/rock.png");
         entrada=gc.getInput();
         Image[] movementUp = {new Image("data/lol.png"), new Image("data/lol.png")};
         Image[] movementDown = {new Image("data/lol.png"), new Image("data/lol.png")};
@@ -61,20 +67,38 @@ public class Game extends BasicGameState {
         jumping = false;
         verticalSpeed = 0.0f;
         sprite = right;
+
     }
     
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         Input input = gc.getInput();
-        
-        grassMap.render((int) xMap, (int) yMap);
+        b.draw((int) xMap, (int) yMap);
+        b.draw((int) xMap+950, (int) yMap);
+        b.draw((int) xMap+1900, (int) yMap);
+        r.draw((int) xMap+400, (int) yMap+450);
+        //grassMap.render((int) xMap, (int) yMap);
         sprite.draw((int) x, (int) y);
         g.drawString("Posicion x: " +x + " Posicion y: " +y, 550,50);
-        g.drawString("Posicion xMapa: " +xMap + " Posicion yMapa: " +yMap, 550,150);
-        g.setColor(Color.yellow);
-       jugador.draw();
+        g.drawString("Posicion xMapa: " +xMap + " Posicion yMapa: " +yMap, 550,100);
+        g.setColor(Color.black);
+        //jugador.draw();
         balas.draw();
         
+        //health bar
+        g.drawRect(x, 50, maxHealth, 30);
+        g.setColor(Color.green);
+        g.fillRect(x, 50, currentHealth, 30);
+        
+        //menu in-game cuando presiona esc
+        if(quit==true){
+            g.drawString("Reanudar Juego (R)", 400, 150);
+            g.drawString("Menu Principal (M)", 400, 200);
+            g.drawString("Salir (S)", 400, 250);
+            if(quit==false){
+                g.clear();
+            }
+        }
        
     }
     
@@ -113,17 +137,25 @@ public class Game extends BasicGameState {
             if(y>350){
                 y -= delta * 0.1f;
             }
-        } else if (input.isKeyDown(Input.KEY_LEFT)) {
+        } else if (input.isKeyDown(Input.KEY_A)) {
             
             xMap += delta*0.1f;
-        } else if (input.isKeyDown(Input.KEY_RIGHT)) {
+        } else if (input.isKeyDown(Input.KEY_D)) {
             xMap -= delta*0.1f;
-            if(xMap <-60 && y >213){
+            /*if(xMap <-60 && y >213){
                 xMap += delta*0.1f;
-            }
-             
-        
+            }*/
+            
+        }else if(input.isKeyPressed(Input.KEY_ESCAPE)){
+            quit = true;
+        }else if(input.isKeyPressed(Input.KEY_R)){
+            quit = false;
+        }else if(input.isKeyPressed(Input.KEY_M)){
+            sbg.enterState(1);
+        }else if(input.isKeyPressed(Input.KEY_S)){
+            System.exit(0);
         }
+  
         controlteclado();
         balas.delete();
     }

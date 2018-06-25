@@ -5,7 +5,6 @@
  */
 package game;
 
-import javafx.application.Application;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
