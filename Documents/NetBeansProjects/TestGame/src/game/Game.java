@@ -63,7 +63,7 @@ public class Game extends BasicGameState {
         balas=new ControladorBala();
         int[] duration = {300, 300};
         //grassMap = new TiledMap("data/grassmap.tmx");
-        grassMap = new TiledMap("data/pupu.tmx");
+        //grassMap = new TiledMap("data/pupu.tmx");
         up = new Animation(movementUp, duration, false);
         down = new Animation(movementDown, duration, false);
         left = new Animation(movementLeft, duration, false);
@@ -84,11 +84,11 @@ public class Game extends BasicGameState {
         b.draw((int) xMap+1900, (int) yMap);
         r.draw((int) xMap+400, (int) yMap+450);
         //grassMap.render((int) xMap, (int) yMap);
-        sprite.draw((int) x, (int) y);
+        //sprite.draw((int) x, (int) y);
         g.drawString("Posicion x: " +x + " Posicion y: " +y, 550,50);
         g.drawString("Posicion xMapa: " +xMap + " Posicion yMapa: " +yMap, 550,100);
         g.setColor(Color.black);
-        //jugador.draw();
+        jugador.draw((int) x, (int) y);
         balas.draw();
         enemigos.draw();
         //health bar
@@ -98,6 +98,7 @@ public class Game extends BasicGameState {
         
         //menu in-game cuando presiona esc
         if(quit==true){
+            gc.pause();
             g.drawString("Reanudar Juego (R)", 400, 150);
             g.drawString("Menu Principal (M)", 400, 200);
             g.drawString("Salir (S)", 400, 250);
@@ -134,7 +135,7 @@ public class Game extends BasicGameState {
         if(jumping){
             verticalSpeed+=0.01f*delta;
         }
-        y+=verticalSpeed;
+        jugador.getPosicion().setY(y+=verticalSpeed);
         if(y>=364f){
             jumping = false;
             verticalSpeed=0.0f;
@@ -161,6 +162,7 @@ public class Game extends BasicGameState {
             quit = true;
         }else if(input.isKeyPressed(Input.KEY_R)){
             quit = false;
+            container.resume();
         }else if(input.isKeyPressed(Input.KEY_M)){
             sbg.enterState(1);
         }else if(input.isKeyPressed(Input.KEY_S)){
@@ -177,7 +179,7 @@ public class Game extends BasicGameState {
        if(entrada.isMousePressed(0)){
             balas.add(jugador.getPosicion().getX()+120,jugador.getPosicion().getY()+jugador.getHeight()/2);
         }
-       else if(entrada.isKeyDown(Input.KEY_RIGHT)){
+       /*else if(entrada.isKeyDown(Input.KEY_RIGHT)){
            jugador.setVelocidad(new Vector(new Punto(100,0)));
        }
        else if(entrada.isKeyDown(Input.KEY_LEFT)){
@@ -185,7 +187,7 @@ public class Game extends BasicGameState {
        }
        else if(entrada.isKeyDown(Input.KEY_UP)){
            jugador.setVelocidad(new Vector(new Punto(0,-200)));
-       }
+       }*/
    }
    
    public void lanzarEnemigo() throws SlickException{
