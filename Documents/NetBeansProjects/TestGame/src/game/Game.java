@@ -5,6 +5,9 @@
  */
 package game;
 
+import Controlador.ControladorBala;
+import Controlador.ControladorEnemigo;
+import java.util.Random;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -37,7 +40,9 @@ public class Game extends BasicGameState {
     int maxHealth = 100;
     int currentHealth=50;
     private boolean quit = false;
-
+    private ControladorEnemigo enemigos;
+    private Random numeros;
+    private int relojEnemigo = 0;
    
     @Override
     public int getID() {
@@ -54,7 +59,7 @@ public class Game extends BasicGameState {
         Image[] movementDown = {new Image("data/lol.png"), new Image("data/lol.png")};
         Image[] movementLeft = {new Image("data/lol.png"), new Image("data/lol.png")};
         Image[] movementRight = {new Image("data/lol.png"), new Image("data/lol.png")};
-        jugador=new SpriteMovil("data/lol.png",new Punto(170,350),new Punto(0,0));
+        jugador=new SpriteMovil("data/lol.png",new Punto(170,365),new Punto(0,0));
         balas=new ControladorBala();
         int[] duration = {300, 300};
         //grassMap = new TiledMap("data/grassmap.tmx");
@@ -63,7 +68,8 @@ public class Game extends BasicGameState {
         down = new Animation(movementDown, duration, false);
         left = new Animation(movementLeft, duration, false);
         right = new Animation(movementRight, duration, false);
-
+        enemigos = new ControladorEnemigo();
+        numeros = new Random();
         jumping = false;
         verticalSpeed = 0.0f;
         sprite = right;
@@ -84,7 +90,7 @@ public class Game extends BasicGameState {
         g.setColor(Color.black);
         //jugador.draw();
         balas.draw();
-        
+        enemigos.draw();
         //health bar
         g.drawRect(x, 50, maxHealth, 30);
         g.setColor(Color.green);
@@ -114,7 +120,12 @@ public class Game extends BasicGameState {
         Input input = container.getInput();
         jugador.update(delta);
         balas.update(delta);
-        
+        enemigos.update(delta);
+        relojEnemigo += delta;
+        if(relojEnemigo > 4000 + numeros.nextInt(2000)){
+            lanzarEnemigo();
+            relojEnemigo=0;
+        }
         
         if (input.isKeyPressed(Input.KEY_SPACE)&&!jumping) {
             verticalSpeed = -0.50f*delta;
@@ -124,7 +135,7 @@ public class Game extends BasicGameState {
             verticalSpeed+=0.01f*delta;
         }
         y+=verticalSpeed;
-        if(y>=349f){
+        if(y>=364f){
             jumping = false;
             verticalSpeed=0.0f;
         }
@@ -155,6 +166,8 @@ public class Game extends BasicGameState {
         }else if(input.isKeyPressed(Input.KEY_S)){
             System.exit(0);
         }
+        
+        
   
         controlteclado();
         balas.delete();
@@ -162,7 +175,7 @@ public class Game extends BasicGameState {
    private void controlteclado() throws SlickException{
        
        if(entrada.isMousePressed(0)){
-            balas.addbala(jugador.getPosicion().getX()+120,jugador.getPosicion().getY()+jugador.getHeight()/2);
+            balas.add(jugador.getPosicion().getX()+120,jugador.getPosicion().getY()+jugador.getHeight()/2);
         }
        else if(entrada.isKeyDown(Input.KEY_RIGHT)){
            jugador.setVelocidad(new Vector(new Punto(100,0)));
@@ -173,5 +186,11 @@ public class Game extends BasicGameState {
        else if(entrada.isKeyDown(Input.KEY_UP)){
            jugador.setVelocidad(new Vector(new Punto(0,-200)));
        }
+   }
+   
+   public void lanzarEnemigo() throws SlickException{
+       
+        enemigos.add(1000, 402);
+        
    }
 }
