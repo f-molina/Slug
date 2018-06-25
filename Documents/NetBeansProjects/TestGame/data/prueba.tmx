@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="30" height="17" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="water.tsx"/>
+ <tileset firstgid="19" source="rock.tsx"/>
+ <layer name="bottom" width="30" height="17">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgGAX0AGJ4MK3MpdTs4QoGKmzobS+htDEY0spA2jsUw4Ye7hlIe4kJf2q7gxR7qY0FBggDAF20tbz4BwAA
+  </data>
+ </layer>
+ <layer name="top" width="30" height="17">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgGAWjYBSMglEwCkbBSAEAsQZjl/gHAAA=
+  </data>
+ </layer>
+</map>
