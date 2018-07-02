@@ -33,6 +33,7 @@ public class Lol extends StateBasedGame{
         //va por orden
         this.addState(new Menu());
         this.addState(new Game());
+        this.addState(new Tienda());
     }
 
     public static void main(String[] args) {

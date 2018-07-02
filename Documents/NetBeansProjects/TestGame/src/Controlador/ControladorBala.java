@@ -4,11 +4,7 @@
  * and open the template in the editor.
  */
 package Controlador;
-
-import Controlador.Controlador;
 import game.Punto;
-import game.Punto;
-import game.SpriteMovil;
 import game.SpriteMovil;
 import java.util.ArrayList;
 import org.newdawn.slick.*;
