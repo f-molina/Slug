@@ -12,6 +12,7 @@ import org.newdawn.slick.*;
  * @author HP PC
  */
 public class Sprite extends Image {
+    
     protected Punto posicion;
     public Sprite(String ruta, Punto posicion) throws SlickException{
         super(ruta);

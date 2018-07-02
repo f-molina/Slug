@@ -4,10 +4,7 @@
  * and open the template in the editor.
  */
 package Controlador;
-
-import Controlador.Controlador;
-import game.Punto;
-import game.SpriteMovil;
+import game.Enemigo;
 import java.util.ArrayList;
 import org.newdawn.slick.SlickException;
 
@@ -17,15 +14,15 @@ import org.newdawn.slick.SlickException;
  */
 public class ControladorEnemigo implements Controlador{
 
-    private ArrayList<SpriteMovil> enemigos;
+    private ArrayList<Enemigo> enemigos;
     
     public ControladorEnemigo(){
-        enemigos = new ArrayList<SpriteMovil>();
+        enemigos = new ArrayList<Enemigo>();
     }
     
     @Override
     public void add(float x, float y) throws SlickException {
-        SpriteMovil enemigo = new SpriteMovil("data/tanque.gif",new Punto(x,y), new Punto(-250,0));
+        Enemigo enemigo = new Enemigo(x, y);
         enemigos.add(enemigo);
     }
 
@@ -46,7 +43,7 @@ public class ControladorEnemigo implements Controlador{
     @Override
     public void delete() {
         for(int i = 0; i< enemigos.size(); i++){
-            if(enemigos.get(i).getPosicion().getX()<0){
+            if(enemigos.get(i).getAreaColision().getX()<0){
                 enemigos.remove(i);
             }
         }

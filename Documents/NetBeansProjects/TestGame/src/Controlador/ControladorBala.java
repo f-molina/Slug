@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package Controlador;
-import game.Punto;
-import game.SpriteMovil;
+import game.Bala;
 import java.util.ArrayList;
 import org.newdawn.slick.*;
 
@@ -14,13 +13,15 @@ import org.newdawn.slick.*;
  * @author HP PC
  */
 public class ControladorBala implements Controlador{
-    private ArrayList<SpriteMovil> balas;
+    
+    private ArrayList<Bala> balas;
+    
     public ControladorBala(){
-        balas=new ArrayList<SpriteMovil>();
+        balas = new ArrayList<Bala>();
     }
     @Override
     public void add(float x,float y) throws SlickException{
-        SpriteMovil bala= new SpriteMovil("data/fuego.png",new Punto(x,y),new Punto(300,0));
+        Bala bala = new Bala(x, y);
         balas.add(bala);
     }
     @Override
@@ -38,7 +39,7 @@ public class ControladorBala implements Controlador{
     @Override
     public void delete(){
         for (int i = 0; i < balas.size(); i++) {
-            if(balas.get(i).getPosicion().getX()>1000){
+            if(balas.get(i).getAreaColision().getX()>1000){
                 balas.remove(i);
             }
         }

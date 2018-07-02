@@ -13,6 +13,7 @@ import org.newdawn.slick.*;
  * @author HP PC
  */
 public class SpriteMovil extends Sprite {
+    
     private Vector velocidad;
     
     public SpriteMovil(String ruta, Punto posicion, Vector velocidad) throws SlickException {

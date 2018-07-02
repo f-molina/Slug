@@ -9,7 +9,6 @@ import Controlador.ControladorBala;
 import Controlador.ControladorEnemigo;
 import java.awt.Rectangle;
 import java.util.Random;
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -18,7 +17,6 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.tiled.TiledMap;
 
 /**
  *
@@ -27,15 +25,13 @@ import org.newdawn.slick.tiled.TiledMap;
 public class Game extends BasicGameState {
     
     public static final int ID = 2;
-    private TiledMap grassMap;
-    private Animation sprite, up, down, left, right;
     private float x = 60f, y = 370f;
     private static final int SIZE = 32;
     private float xMap=0, yMap=0;
     private boolean jumping;
     private float verticalSpeed;
     private ControladorBala balas;
-    private SpriteMovil jugador;
+    private Jugador jugador;
     private Input entrada;
     Image b, r, pause, heart, coin;//b: imagen background, r: imagen de roca
     int maxHealth = 100;
@@ -54,31 +50,17 @@ public class Game extends BasicGameState {
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         pause = new Image("data/pause.png");
-        System.out.println("screen: "+gc.getScreenWidth());
-        System.out.println("screen: "+gc.getScreenHeight());
         b = new Image("data/b2.png");
-        r = new Image("data/rock.png");
         heart = new Image("data/heart.png");
         coin = new Image("data/coin.png");
         entrada=gc.getInput();
-        Image[] movementUp = {new Image("data/lol.png"), new Image("data/lol.png")};
-        Image[] movementDown = {new Image("data/lol.png"), new Image("data/lol.png")};
-        Image[] movementLeft = {new Image("data/lol.png"), new Image("data/lol.png")};
-        Image[] movementRight = {new Image("data/lol.png"), new Image("data/lol.png")};
-        jugador=new SpriteMovil("data/machine2.gif",new Punto(170,365),new Punto(0,0));
+        jugador = new Jugador();
         balas=new ControladorBala();
         int[] duration = {300, 300};
-        //grassMap = new TiledMap("data/grassmap.tmx");
-        //grassMap = new TiledMap("data/pupu.tmx");
-        up = new Animation(movementUp, duration, false);
-        down = new Animation(movementDown, duration, false);
-        left = new Animation(movementLeft, duration, false);
-        right = new Animation(movementRight, duration, false);
         enemigos = new ControladorEnemigo();
         numeros = new Random();
         jumping = false;
         verticalSpeed = 0.0f;
-        sprite = right;
 
     }
     
@@ -90,11 +72,10 @@ public class Game extends BasicGameState {
         b.draw((int) xMap+950, (int) yMap);
         b.draw((int) xMap+1900, (int) yMap);
         b.draw((int) xMap+2850, (int) yMap);
-        r.draw((int) xMap+300, (int) yMap+450);
         /*g.drawString("Posicion x: " +x + " Posicion y: " +y, 550,50);
         g.drawString("Posicion xMapa: " +xMap + " Posicion yMapa: " +yMap, 550,100);*/
         g.setColor(Color.black);
-        jugador.draw((int) x, (int) y);
+        jugador.draw();
         balas.draw();
         enemigos.draw();
 
@@ -138,7 +119,7 @@ public class Game extends BasicGameState {
         if(jumping){
             verticalSpeed+=0.01f*delta;
         }
-        jugador.getPosicion().setY(y+=verticalSpeed);
+        jugador.getAreaColision().setY(y+=verticalSpeed);
         if(y>=364f){
             jumping = false;
             verticalSpeed=0.0f;
@@ -176,7 +157,7 @@ public class Game extends BasicGameState {
    private void controlteclado() throws SlickException{
        
        if(entrada.isMousePressed(0)){
-            balas.add(jugador.getPosicion().getX()+120,jugador.getPosicion().getY()+jugador.getHeight()/2);
+            balas.add(jugador.getAreaColision().getX()+120,jugador.getAreaColision().getY()+jugador.getAreaColision().getHeight()/2);
         }
    }
    
