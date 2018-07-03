@@ -27,7 +27,7 @@ public class Jugador implements IColisionable{
     private float verticalSpeed;
     private Input input;
     private ControladorBala bala;
-    private Rectangle colision;
+    public static Rectangle colision;
     
     public void init() throws SlickException{
         jugador = new SpriteMovil("data/machine2.gif",new Punto(170,365),new Punto(0,0));
@@ -71,7 +71,10 @@ public class Jugador implements IColisionable{
 
         }
         
-        if(input.isMousePressed(0)){
+        /*if(input.isMousePressed(0)){
+            bala.add(jugador.getPosicion().getX()+30,(jugador.getPosicion().getY()+jugador.getHeight()/2)-15,gestor);
+        }*/
+        if(input.isKeyPressed(Input.KEY_TAB)){
             bala.add(jugador.getPosicion().getX()+30,(jugador.getPosicion().getY()+jugador.getHeight()/2)-15,gestor);
         }
         bala.delete();
@@ -90,6 +93,7 @@ public class Jugador implements IColisionable{
 
     @Override
     public void alColisionar(IColisionable colision) {
+        
         //jugador.getPosicion().setX(2000);
     }
     

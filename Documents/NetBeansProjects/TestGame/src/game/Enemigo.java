@@ -18,7 +18,7 @@ import org.newdawn.slick.geom.Shape;
 public class Enemigo implements IColisionable{
     
     private SpriteMovil enemigo;
-    private Rectangle colision;
+    public static Rectangle colision;
     
     public Enemigo(float x, float y) throws SlickException{
         enemigo = new SpriteMovil("data/tanque.gif",new Punto(x,y), new Punto(-250,0));
@@ -47,7 +47,13 @@ public class Enemigo implements IColisionable{
 
     @Override
     public void alColisionar(IColisionable colision) {
-        enemigo.getPosicion().setX(-5000);
+        if(Bala.colision.intersects(Enemigo.colision)){
+            enemigo.getPosicion().setX(-5000);
+        }
+        
+        else if(Jugador.colision.intersects(Enemigo.colision)){
+            enemigo.getPosicion().setX(-5000);
+        }
     }
     
 }

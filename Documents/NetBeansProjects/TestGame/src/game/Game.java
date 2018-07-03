@@ -68,6 +68,8 @@ public class Game extends BasicGameState {
         b.draw((int) xMap+950, (int) yMap);
         b.draw((int) xMap+1900, (int) yMap);
         b.draw((int) xMap+2850, (int) yMap);
+        b.draw((int) xMap+3800, (int) yMap);
+        b.draw((int) xMap+4750, (int) yMap);
         
         //jugador, balas, enemigo
         g.setColor(Color.black);
@@ -107,7 +109,7 @@ public class Game extends BasicGameState {
         enemigos.delete();
         balas.delete();
         relojEnemigo += delta;
-        //gestor.comprobarColisiones();
+        gestor.comprobarColisiones();
         if(relojEnemigo > 4000 + numeros.nextInt(2000)){
             lanzarEnemigo();
             relojEnemigo=0;
@@ -125,6 +127,9 @@ public class Game extends BasicGameState {
             sbg.enterState(3);    
         }else if(entrada.isKeyPressed(Input.KEY_S)){
             System.exit(0);
+            //pantalla de game over, se ha puesto aca para mientras por prueba
+        }else if(entrada.isKeyPressed(Input.KEY_Z)){
+            sbg.enterState(4);
         }
     }
 

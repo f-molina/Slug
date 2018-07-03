@@ -17,7 +17,7 @@ import org.newdawn.slick.geom.Shape;
 public class Bala implements IColisionable{
     
     private SpriteMovil bala;
-    private Rectangle colision;
+    public static Rectangle colision;
     
     public Bala(float x, float y) throws SlickException{
         bala = new SpriteMovil("data/fuego.png",new Punto(x,y),new Punto(300,0));
@@ -46,7 +46,9 @@ public class Bala implements IColisionable{
 
     @Override
     public void alColisionar(IColisionable colision) {
-        //bala.getPosicion().setX(2000);
+        if(Bala.colision.intersects(Enemigo.colision)){
+            bala.getPosicion().setX(-5000);
+        }
     }
     
 }
