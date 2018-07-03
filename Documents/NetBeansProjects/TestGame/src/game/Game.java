@@ -24,12 +24,9 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Game extends BasicGameState {
     
     public static final int ID = 2;
-    private float x = 60f, y = 370f;
-    private float xMap=0, yMap=0;
-    private boolean jumping;
-    private float verticalSpeed;
+    public static float xMap=0, yMap=0;
     private ControladorBala balas;
-    private SpriteMovil jugador;
+    private Jugador jugador;
     private Input entrada;
     Image b, r, pause, heart, coin;
     private boolean quit = false;
@@ -51,13 +48,12 @@ public class Game extends BasicGameState {
         heart = new Image("data/heart.png");
         coin = new Image("data/coin.png");
         //inicializadores
+        jugador = new Jugador();
+        jugador.init();
         entrada = gc.getInput();
-        jugador = new SpriteMovil("data/machine2.gif",new Punto(170,365),new Punto(0,0));
         balas = new ControladorBala();
         enemigos = new ControladorEnemigo();
         numeros = new Random();
-        jumping = false;
-        verticalSpeed = 0.0f;
 
     }
     
@@ -72,7 +68,7 @@ public class Game extends BasicGameState {
         
         //jugador, balas, enemigo
         g.setColor(Color.black);
-        jugador.draw((int) x, (int) y);
+        jugador.render(g);
         balas.draw();
         enemigos.draw();
 
@@ -101,8 +97,8 @@ public class Game extends BasicGameState {
     
     @Override
     public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
-        Input input = container.getInput();
-        jugador.update(delta);
+        entrada = container.getInput();
+        jugador.update(container, delta);
         balas.update(delta);
         enemigos.update(delta);
         relojEnemigo += delta;
@@ -112,56 +108,24 @@ public class Game extends BasicGameState {
             relojEnemigo=0;
         }
         
-        if (input.isKeyPressed(Input.KEY_SPACE)&&!jumping) {
-            verticalSpeed = -0.50f*delta;
-            jumping = true;
-          }
-        if(jumping){
-            verticalSpeed+=0.01f*delta;
-        }
-        jugador.getPosicion().setY(y+=verticalSpeed);
-        if(y>=364f){
-            jumping = false;
-            verticalSpeed=0.0f;
-        }
-        
-        if (input.isKeyDown(Input.KEY_A)) {
-            if(xMap>-1){
-                xMap -= delta*0.1f;
-            }else{
-                xMap += delta*0.1f;
-            }   
-            
-        } else if (input.isKeyDown(Input.KEY_D)) {
-                xMap -= delta*0.1f;
-
-        }else if(input.isKeyPressed(Input.KEY_ESCAPE)){
+        //teclado menu in-game
+        if(entrada.isKeyPressed(Input.KEY_ESCAPE)){
             quit = true;
-        }else if(input.isKeyPressed(Input.KEY_R)){
+        }else if(entrada.isKeyPressed(Input.KEY_R)){
             quit = false;
             container.resume();
-        }else if(input.isKeyPressed(Input.KEY_M)){
+        }else if(entrada.isKeyPressed(Input.KEY_M)){
             sbg.enterState(1);
-        }else if(input.isKeyPressed(Input.KEY_T)){
+        }else if(entrada.isKeyPressed(Input.KEY_T)){
             sbg.enterState(3);    
-        }else if(input.isKeyPressed(Input.KEY_S)){
+        }else if(entrada.isKeyPressed(Input.KEY_S)){
             System.exit(0);
         }
-
-        controlteclado();
-        balas.delete();
     }
-   private void controlteclado() throws SlickException{
-       
-       if(entrada.isMousePressed(0)){
-            balas.add(jugador.getPosicion().getX()+120,jugador.getPosicion().getY()+jugador.getHeight()/2);
-        }
-   }
+    
    
    public void lanzarEnemigo() throws SlickException{
-       
         enemigos.add(1000, 402);
-        
    }
    
 }
