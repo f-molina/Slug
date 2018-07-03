@@ -20,7 +20,7 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class Tienda extends BasicGameState{
     
-    Image bck, soldier, ret, coin;
+    Image bck, soldier, ret, coin, rage, buy;
     public static final int ID = 3;
 
     @Override
@@ -34,6 +34,8 @@ public class Tienda extends BasicGameState{
         soldier = new Image("data/machine.gif");
         ret = new Image("data/return.png");
         coin = new Image("data/coin.png");
+        rage = new Image("data/rage.png");
+        buy = new Image("data/buy.png");
         
     }
 
@@ -41,9 +43,17 @@ public class Tienda extends BasicGameState{
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         bck.draw();
         soldier.draw(100,50);
+        rage.draw(140,300);
         ret.draw(860,450);
         
+        buy.draw(350,30);
+        buy.draw(350,250);
+        
+        //rect jugador extra
         g.drawRect(115, 75, 175, 175);
+        //rect potenciador
+        g.drawRect(115, 275, 175, 175);
+        //rect barra monedas
         g.drawRect(800, 40, 100, 30);
         g.setColor(Color.black);
         coin.draw(800,40);

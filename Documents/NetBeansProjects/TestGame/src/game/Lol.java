@@ -16,8 +16,10 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class Lol extends StateBasedGame{
     
-    public static final int MAINMENU     = 1;
-    public static final int GAME         = 2;
+    public static final int MAINMENU = 1;
+    public static final int GAME = 2;
+    public static final int STORE = 3;
+    public static final int GAMEOVER = 4;
 
     public static final int WIDTH   = 950;
     public static final int HEIGHT  = 540;
@@ -34,6 +36,7 @@ public class Lol extends StateBasedGame{
         this.addState(new Menu());
         this.addState(new Game());
         this.addState(new Tienda());
+        this.addState(new GameOver());
     }
 
     public static void main(String[] args) {

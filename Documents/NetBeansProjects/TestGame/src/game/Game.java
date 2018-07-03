@@ -122,8 +122,7 @@ public class Game extends BasicGameState {
             System.exit(0);
         }
     }
-    
-   
+
    public void lanzarEnemigo() throws SlickException{
         enemigos.add(1000, 402);
    }
