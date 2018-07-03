@@ -7,6 +7,7 @@ package game;
 
 import Controlador.ControladorBala;
 import Controlador.ControladorEnemigo;
+import Controlador.GestorColision;
 import java.util.Random;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -33,7 +34,8 @@ public class Game extends BasicGameState {
     private ControladorEnemigo enemigos;
     private Random numeros;
     private int relojEnemigo = 0;
-
+    private GestorColision gestor;
+    
     @Override
     public int getID() {
         return Game.ID;
@@ -54,7 +56,8 @@ public class Game extends BasicGameState {
         balas = new ControladorBala();
         enemigos = new ControladorEnemigo();
         numeros = new Random();
-
+        gestor = new GestorColision();
+        gestor.registarCuerpo(jugador);
     }
     
     @Override
@@ -98,11 +101,13 @@ public class Game extends BasicGameState {
     @Override
     public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
         entrada = container.getInput();
-        jugador.update(container, delta);
+        jugador.update(container, delta,gestor);
         balas.update(delta);
         enemigos.update(delta);
+        enemigos.delete();
+        balas.delete();
         relojEnemigo += delta;
-        
+        //gestor.comprobarColisiones();
         if(relojEnemigo > 4000 + numeros.nextInt(2000)){
             lanzarEnemigo();
             relojEnemigo=0;
@@ -125,7 +130,7 @@ public class Game extends BasicGameState {
     
    
    public void lanzarEnemigo() throws SlickException{
-        enemigos.add(1000, 402);
+        enemigos.add(1000, 402,gestor);
    }
    
 }

@@ -15,4 +15,5 @@ public interface IColisionable {
     
     public Shape getAreaColision();
     public void sincronizarArea();
+    public void alColisionar(IColisionable colision);
 }

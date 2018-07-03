@@ -22,9 +22,10 @@ public class ControladorEnemigo implements Controlador{
     }
     
     @Override
-    public void add(float x, float y) throws SlickException {
+    public void add(float x, float y,GestorColision gestor) throws SlickException {
         Enemigo enemigo = new Enemigo(x, y);
         enemigos.add(enemigo);
+        gestor.registarCuerpo(enemigo);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class ControladorEnemigo implements Controlador{
     @Override
     public void delete() {
         for(int i = 0; i< enemigos.size(); i++){
-            if(enemigos.get(i).getAreaColision().getX()<0){
+            if(enemigos.get(i).getAreaColision().getX()<-200){
                 enemigos.remove(i);
             }
         }

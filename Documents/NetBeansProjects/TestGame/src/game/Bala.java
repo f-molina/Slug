@@ -30,6 +30,7 @@ public class Bala implements IColisionable{
     
     public void update(int delta){
         bala.update(delta);
+        sincronizarArea();
     }
 
     @Override
@@ -41,6 +42,11 @@ public class Bala implements IColisionable{
     public void sincronizarArea() {
         colision.setX(bala.getPosicion().getX());
         colision.setY(bala.getPosicion().getY());
+    }
+
+    @Override
+    public void alColisionar(IColisionable colision) {
+        //bala.getPosicion().setX(2000);
     }
     
 }

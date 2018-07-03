@@ -6,6 +6,7 @@
 package game;
 
 import Controlador.ControladorBala;
+import Controlador.GestorColision;
 import Interfaces.IColisionable;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -41,9 +42,10 @@ public class Jugador implements IColisionable{
         bala.draw();
     }
     
-    public void update(GameContainer container, int delta) throws SlickException{
+    public void update(GameContainer container, int delta, GestorColision gestor) throws SlickException{
         input = container.getInput();
         bala.update(delta);
+        sincronizarArea();
         if (input.isKeyPressed(Input.KEY_SPACE)&&!jumping) {
             verticalSpeed = -0.50f*delta;
             jumping = true;
@@ -70,7 +72,7 @@ public class Jugador implements IColisionable{
         }
         
         if(input.isMousePressed(0)){
-            bala.add(jugador.getPosicion().getX()+30,(jugador.getPosicion().getY()+jugador.getHeight()/2)-15);
+            bala.add(jugador.getPosicion().getX()+30,(jugador.getPosicion().getY()+jugador.getHeight()/2)-15,gestor);
         }
         bala.delete();
     }
@@ -84,6 +86,11 @@ public class Jugador implements IColisionable{
     public void sincronizarArea() {
         colision.setX(jugador.getPosicion().getX());
         colision.setY(jugador.getPosicion().getY());
+    }
+
+    @Override
+    public void alColisionar(IColisionable colision) {
+        //jugador.getPosicion().setX(2000);
     }
     
 }
