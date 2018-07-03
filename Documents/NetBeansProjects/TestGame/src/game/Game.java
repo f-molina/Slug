@@ -7,7 +7,6 @@ package game;
 
 import Controlador.ControladorBala;
 import Controlador.ControladorEnemigo;
-import java.awt.Rectangle;
 import java.util.Random;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -26,16 +25,13 @@ public class Game extends BasicGameState {
     
     public static final int ID = 2;
     private float x = 60f, y = 370f;
-    private static final int SIZE = 32;
     private float xMap=0, yMap=0;
     private boolean jumping;
     private float verticalSpeed;
     private ControladorBala balas;
-    private Jugador jugador;
+    private SpriteMovil jugador;
     private Input entrada;
-    Image b, r, pause, heart, coin;//b: imagen background, r: imagen de roca
-    int maxHealth = 100;
-    int currentHealth=100;
+    Image b, r, pause, heart, coin;
     private boolean quit = false;
     private ControladorEnemigo enemigos;
     private Random numeros;
@@ -49,14 +45,15 @@ public class Game extends BasicGameState {
     
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        //imagenes
         pause = new Image("data/pause.png");
         b = new Image("data/b2.png");
         heart = new Image("data/heart.png");
         coin = new Image("data/coin.png");
-        entrada=gc.getInput();
-        jugador = new Jugador();
-        balas=new ControladorBala();
-        int[] duration = {300, 300};
+        //inicializadores
+        entrada = gc.getInput();
+        jugador = new SpriteMovil("data/machine2.gif",new Punto(170,365),new Punto(0,0));
+        balas = new ControladorBala();
         enemigos = new ControladorEnemigo();
         numeros = new Random();
         jumping = false;
@@ -66,23 +63,25 @@ public class Game extends BasicGameState {
     
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-        Input input = gc.getInput();
+        //mapa
         b.draw((int) xMap-950, (int) yMap);
         b.draw((int) xMap, (int) yMap);
         b.draw((int) xMap+950, (int) yMap);
         b.draw((int) xMap+1900, (int) yMap);
         b.draw((int) xMap+2850, (int) yMap);
-        /*g.drawString("Posicion x: " +x + " Posicion y: " +y, 550,50);
-        g.drawString("Posicion xMapa: " +xMap + " Posicion yMapa: " +yMap, 550,100);*/
+        
+        //jugador, balas, enemigo
         g.setColor(Color.black);
-        jugador.draw();
+        jugador.draw((int) x, (int) y);
         balas.draw();
         enemigos.draw();
 
+        //vida
         heart.draw(10,20);
         heart.draw(50,20);
         heart.draw(90,20);
         
+        //currency
         g.drawRect(10, 60, 100, 30);
         coin.draw(10,60);
 
@@ -107,6 +106,7 @@ public class Game extends BasicGameState {
         balas.update(delta);
         enemigos.update(delta);
         relojEnemigo += delta;
+        
         if(relojEnemigo > 4000 + numeros.nextInt(2000)){
             lanzarEnemigo();
             relojEnemigo=0;
@@ -119,7 +119,7 @@ public class Game extends BasicGameState {
         if(jumping){
             verticalSpeed+=0.01f*delta;
         }
-        jugador.getAreaColision().setY(y+=verticalSpeed);
+        jugador.getPosicion().setY(y+=verticalSpeed);
         if(y>=364f){
             jumping = false;
             verticalSpeed=0.0f;
@@ -134,9 +134,6 @@ public class Game extends BasicGameState {
             
         } else if (input.isKeyDown(Input.KEY_D)) {
                 xMap -= delta*0.1f;
-                if(intersects()){
-                    xMap += delta*0.1f;
-                }
 
         }else if(input.isKeyPressed(Input.KEY_ESCAPE)){
             quit = true;
@@ -157,7 +154,7 @@ public class Game extends BasicGameState {
    private void controlteclado() throws SlickException{
        
        if(entrada.isMousePressed(0)){
-            balas.add(jugador.getAreaColision().getX()+120,jugador.getAreaColision().getY()+jugador.getAreaColision().getHeight()/2);
+            balas.add(jugador.getPosicion().getX()+120,jugador.getPosicion().getY()+jugador.getHeight()/2);
         }
    }
    
@@ -167,10 +164,4 @@ public class Game extends BasicGameState {
         
    }
    
-   public boolean intersects(){
-       Rectangle rect = new Rectangle((int) x, (int) y, 145, 185);
-       Rectangle rect1 = new Rectangle((int) xMap+300, (int) yMap+450, 90, 90);
-       Rectangle rect2 = new Rectangle((int) 1000,402, 184, 132);
-        return rect.intersects(rect2);
-   }
 }

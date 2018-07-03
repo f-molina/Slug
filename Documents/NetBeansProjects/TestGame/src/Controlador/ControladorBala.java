@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Controlador;
+import Interfaces.Controlador;
 import game.Bala;
 import java.util.ArrayList;
 import org.newdawn.slick.*;

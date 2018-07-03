@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Controlador;
+import Interfaces.Controlador;
 import game.Enemigo;
 import java.util.ArrayList;
 import org.newdawn.slick.SlickException;
