@@ -21,9 +21,10 @@ public class ControladorBala implements Controlador{
         balas = new ArrayList<Bala>();
     }
     @Override
-    public void add(float x,float y) throws SlickException{
+    public void add(float x,float y, GestorColision gestor) throws SlickException{
         Bala bala = new Bala(x, y);
         balas.add(bala);
+        gestor.registarCuerpo(bala);
     }
     @Override
     public void draw(){

@@ -5,6 +5,7 @@
  */
 package game;
 
+import Controlador.GestorColision;
 import Interfaces.IColisionable;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
@@ -30,6 +31,7 @@ public class Enemigo implements IColisionable{
     
     public void update(int delta){
         enemigo.update(delta);
+        sincronizarArea();
     }
 
     @Override
@@ -41,6 +43,11 @@ public class Enemigo implements IColisionable{
     public void sincronizarArea() {
         colision.setX(enemigo.getPosicion().getX());
         colision.setY(enemigo.getPosicion().getY());
+    }
+
+    @Override
+    public void alColisionar(IColisionable colision) {
+        enemigo.getPosicion().setX(-5000);
     }
     
 }

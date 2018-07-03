@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Controlador.GestorColision;
 import org.newdawn.slick.SlickException;
 
 /**
@@ -12,7 +13,7 @@ import org.newdawn.slick.SlickException;
  * @author EdwinLovo
  */
 public interface Controlador {
-    public void add(float x,float y) throws SlickException;
+    public void add(float x,float y,GestorColision gestor) throws SlickException;
     public void draw();
     public void update(int delta);
     public void delete();
