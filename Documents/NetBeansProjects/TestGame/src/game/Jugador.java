@@ -70,7 +70,7 @@ public class Jugador implements IColisionable{
         }
         
         if(input.isMousePressed(0)){
-            bala.add(jugador.getPosicion().getX()+120,jugador.getPosicion().getY()+jugador.getHeight()/2);
+            bala.add(jugador.getPosicion().getX()+30,(jugador.getPosicion().getY()+jugador.getHeight()/2)-15);
         }
         bala.delete();
     }
