@@ -16,16 +16,21 @@ public class GestorColision {
     
     private ArrayList<IColisionable> lista;
 
+    
+    
+
     public GestorColision() {
         lista = new ArrayList<IColisionable>();
     }
     
     public void registarCuerpo(IColisionable cuerpo){
         if(!lista.contains(cuerpo)) lista.add(cuerpo);
+        
     }
     
     public void anularCuerpo(IColisionable cuerpo){
         if(lista.contains(cuerpo)) lista.remove(cuerpo);
+        
     }
     
     public void comprobarColisiones(){
@@ -38,7 +43,8 @@ public class GestorColision {
     
     public void buscarColision(int i, int j){
         if(lista.get(i).getAreaColision().intersects(lista.get(j).getAreaColision())){
-            System.out.println("COLISION");
+            
+            //System.out.println("COLISION");
             lista.get(i).alColisionar(lista.get(j));
             //lista.get(j).alColisionar(lista.get(i));
         }

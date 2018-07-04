@@ -6,6 +6,7 @@
 package Controlador;
 import Interfaces.Controlador;
 import game.Enemigo;
+import game.Game;
 import java.util.ArrayList;
 import org.newdawn.slick.SlickException;
 
@@ -14,11 +15,12 @@ import org.newdawn.slick.SlickException;
  * @author EdwinLovo
  */
 public class ControladorEnemigo implements Controlador{
-
+    private Game game;
     private ArrayList<Enemigo> enemigos;
     
     public ControladorEnemigo(){
         enemigos = new ArrayList<Enemigo>();
+       
     }
     
     @Override
@@ -50,5 +52,5 @@ public class ControladorEnemigo implements Controlador{
             }
         }
     }
-    
+
 }

@@ -35,12 +35,16 @@ public class Game extends BasicGameState {
     private Random numeros;
     private int relojEnemigo = 0;
     private GestorColision gestor;
+   
+    
     
     @Override
     public int getID() {
         return Game.ID;
     }
-    
+    public Jugador getJugador(){
+        return jugador;
+    }
     
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -85,7 +89,8 @@ public class Game extends BasicGameState {
         //currency
         g.drawRect(10, 60, 100, 30);
         coin.draw(10,60);
-
+        g.drawString("        "+jugador.getScore()/100, 80, 25);
+        g.drawString("     "+((jugador.getScore()/100)/5), 30, 63);
         //menu in-game cuando presiona esc
         if(quit==true){
             pause.draw();
@@ -110,6 +115,8 @@ public class Game extends BasicGameState {
         balas.delete();
         relojEnemigo += delta;
         gestor.comprobarColisiones();
+        jugador.setScore((jugador.getScore()+1));
+        
         if(relojEnemigo > 4000 + numeros.nextInt(2000)){
             lanzarEnemigo();
             relojEnemigo=0;
@@ -134,6 +141,7 @@ public class Game extends BasicGameState {
     }
 
    public void lanzarEnemigo() throws SlickException{
+        
         enemigos.add(1000, 402,gestor);
    }
    

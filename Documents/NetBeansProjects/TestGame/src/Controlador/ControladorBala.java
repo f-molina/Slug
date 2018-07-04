@@ -5,6 +5,7 @@
  */
 package Controlador;
 import Interfaces.Controlador;
+import game.Game;
 import game.Bala;
 import java.util.ArrayList;
 import org.newdawn.slick.*;
@@ -19,6 +20,7 @@ public class ControladorBala implements Controlador{
     
     public ControladorBala(){
         balas = new ArrayList<Bala>();
+       
     }
     @Override
     public void add(float x,float y, GestorColision gestor) throws SlickException{

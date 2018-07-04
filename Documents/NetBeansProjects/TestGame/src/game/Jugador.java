@@ -6,6 +6,7 @@
 package game;
 
 import Controlador.ControladorBala;
+import Controlador.ControladorEnemigo;
 import Controlador.GestorColision;
 import Interfaces.IColisionable;
 import org.newdawn.slick.GameContainer;
@@ -20,7 +21,7 @@ import org.newdawn.slick.geom.Shape;
  * @author fmolina
  */
 public class Jugador implements IColisionable{
-    
+     private long score;
     private SpriteMovil jugador;
     private float x = 60f, y = 370f;
     private boolean jumping;
@@ -28,13 +29,25 @@ public class Jugador implements IColisionable{
     private Input input;
     private ControladorBala bala;
     public static Rectangle colision;
+    private ControladorEnemigo enemigo;
+    
+
+    public long getScore() {
+        return score;
+    }
+
+    public void setScore(long score) {
+        this.score = score;
+    }
+    
     
     public void init() throws SlickException{
         jugador = new SpriteMovil("data/machine2.gif",new Punto(170,365),new Punto(0,0));
-        bala = new ControladorBala();
+        bala = new ControladorBala( );
         colision = new Rectangle(jugador.getPosicion().getX(), jugador.getPosicion().getY(), jugador.getWidth(), jugador.getHeight());
         jumping = false;
         verticalSpeed = 0.0f;
+        score=0;
     }
     
     public void render(Graphics g){
@@ -76,6 +89,7 @@ public class Jugador implements IColisionable{
         }*/
         if(input.isKeyPressed(Input.KEY_TAB)){
             bala.add(jugador.getPosicion().getX()+30,(jugador.getPosicion().getY()+jugador.getHeight()/2)-15,gestor);
+            
         }
         bala.delete();
     }
