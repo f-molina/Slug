@@ -5,7 +5,7 @@
  */
 package Interfaces;
 
-import game.Jugador;
+import Personajes.Jugador;
 import org.newdawn.slick.geom.Shape;
 
 /**

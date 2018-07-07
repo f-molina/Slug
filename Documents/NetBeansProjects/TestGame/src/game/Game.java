@@ -5,8 +5,10 @@
  */
 package game;
 
+import Personajes.Jugador;
 import Controlador.ControladorBala;
 import Controlador.ControladorEnemigo;
+import Controlador.ControladorMeteoro;
 import Controlador.GestorColision;
 import java.util.Random;
 import org.newdawn.slick.Color;
@@ -35,8 +37,9 @@ public class Game extends BasicGameState {
     private Random numeros;
     private int relojEnemigo = 0;
     private GestorColision gestor;
-   
-    
+    private int relojMeteoro = 0;
+    private Random xMeteoro;
+    private ControladorMeteoro meteoros;
     
     @Override
     public int getID() {
@@ -62,6 +65,8 @@ public class Game extends BasicGameState {
         numeros = new Random();
         gestor = new GestorColision();
         gestor.registarCuerpo(jugador);
+        xMeteoro = new Random();
+        meteoros = new ControladorMeteoro();
     }
     
     @Override
@@ -80,7 +85,7 @@ public class Game extends BasicGameState {
         jugador.render(g);
         balas.draw();
         enemigos.draw();
-
+        meteoros.draw();
         //vida
         heart.draw(10,20);
         heart.draw(50,20);
@@ -111,15 +116,23 @@ public class Game extends BasicGameState {
         jugador.update(container, delta,gestor);
         balas.update(delta);
         enemigos.update(delta);
+        meteoros.update(delta);
         enemigos.delete();
+        meteoros.delete();
         balas.delete();
         relojEnemigo += delta;
+        relojMeteoro += delta;
         gestor.comprobarColisiones();
         jugador.setScore((jugador.getScore()+1));
         
-        if(relojEnemigo > 4000 + numeros.nextInt(2000)){
+        if(relojEnemigo > 3500 + numeros.nextInt(2000)){
             lanzarEnemigo();
             relojEnemigo=0;
+        }
+        
+        if(relojMeteoro > 1000 + xMeteoro.nextInt(2000)){
+            lanzarMeteoro(xMeteoro);
+            relojMeteoro=0;
         }
         
         //teclado menu in-game
@@ -141,8 +154,10 @@ public class Game extends BasicGameState {
     }
 
    public void lanzarEnemigo() throws SlickException{
-        
         enemigos.add(1000, 402,gestor);
    }
    
+   public void lanzarMeteoro(Random xMeteoro) throws SlickException{
+       meteoros.add(xMeteoro.nextInt(1000), -10, gestor);
+   }
 }

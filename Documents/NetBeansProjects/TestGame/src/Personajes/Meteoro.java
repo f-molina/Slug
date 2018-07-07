@@ -3,37 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package Personajes;
 
 import Interfaces.IColisionable;
+import game.Punto;
+import game.SpriteMovil;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
 /**
  *
- * @author fmolina
+ * @author EdwinLovo
  */
-public class Bala implements IColisionable{
+public class Meteoro implements IColisionable{
     
-    private SpriteMovil bala;
+    private SpriteMovil meteoro;
     public static Rectangle colision;
-
-    public Bala(float x, float y) throws SlickException{
-        bala = new SpriteMovil("data/fuego.png",new Punto(x,y),new Punto(300,0));
-        colision = new Rectangle(bala.getPosicion().getX(), bala.getPosicion().getY(), bala.getWidth(), bala.getHeight());
-       
+    
+    public Meteoro(float x, float y) throws SlickException{
+        meteoro = new SpriteMovil("data/meteoro2.png", new Punto(x,y), new Punto(0,-250));
+        colision = new Rectangle(meteoro.getPosicion().getX(), meteoro.getPosicion().getY(), meteoro.getWidth(), meteoro.getHeight());
     }
     
     public void draw(){
-        bala.draw();
+        meteoro.draw();
     }
     
     public void update(int delta){
-        bala.update(delta);
+        meteoro.update2(delta);
         sincronizarArea();
     }
-
+    
     @Override
     public Shape getAreaColision() {
         return colision;
@@ -41,15 +42,14 @@ public class Bala implements IColisionable{
 
     @Override
     public void sincronizarArea() {
-        colision.setX(bala.getPosicion().getX());
-        colision.setY(bala.getPosicion().getY());
+        colision.setX(meteoro.getPosicion().getX());
+        colision.setY(meteoro.getPosicion().getY());
     }
 
     @Override
     public void alColisionar(IColisionable colision) {
-        if(Bala.colision.intersects(Enemigo.colision)){
-            bala.getPosicion().setX(-5000);
-            
+        if(Jugador.colision.intersects(Meteoro.colision)){
+            meteoro.getPosicion().setY(5000);
         }
     }
     

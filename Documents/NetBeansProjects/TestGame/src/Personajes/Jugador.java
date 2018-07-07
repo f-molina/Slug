@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package Personajes;
 
 import Controlador.ControladorBala;
 import Controlador.ControladorEnemigo;
 import Controlador.GestorColision;
 import Interfaces.IColisionable;
+import game.Game;
+import game.Punto;
+import game.SpriteMovil;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -44,7 +47,7 @@ public class Jugador implements IColisionable{
     public void init() throws SlickException{
         jugador = new SpriteMovil("data/machine2.gif",new Punto(170,365),new Punto(0,0));
         bala = new ControladorBala( );
-        colision = new Rectangle(jugador.getPosicion().getX(), jugador.getPosicion().getY(), jugador.getWidth(), jugador.getHeight());
+        colision = new Rectangle(jugador.getPosicion().getX(), jugador.getPosicion().getY(), 30, jugador.getHeight());
         jumping = false;
         verticalSpeed = 0.0f;
         score=0;

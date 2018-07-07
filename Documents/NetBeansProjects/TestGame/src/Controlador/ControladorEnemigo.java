@@ -5,7 +5,7 @@
  */
 package Controlador;
 import Interfaces.Controlador;
-import game.Enemigo;
+import Personajes.Enemigo;
 import game.Game;
 import java.util.ArrayList;
 import org.newdawn.slick.SlickException;
