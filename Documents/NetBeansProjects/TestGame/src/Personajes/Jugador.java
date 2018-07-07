@@ -47,7 +47,7 @@ public class Jugador implements IColisionable{
     public void init() throws SlickException{
         jugador = new SpriteMovil("data/machine2.gif",new Punto(170,365),new Punto(0,0));
         bala = new ControladorBala( );
-        colision = new Rectangle(jugador.getPosicion().getX(), jugador.getPosicion().getY(), 30, jugador.getHeight());
+        colision = new Rectangle(jugador.getPosicion().getX()-100, jugador.getPosicion().getY()+30, jugador.getWidth()-70, jugador.getHeight()-30);
         jumping = false;
         verticalSpeed = 0.0f;
         score=0;
@@ -55,7 +55,8 @@ public class Jugador implements IColisionable{
     
     public void render(Graphics g){
         jugador.draw((int)x, (int)y);
-        bala.draw();
+        bala.draw(g);
+        g.drawRect(colision.getX(), colision.getY(), colision.getWidth(), colision.getHeight());
     }
     
     public void update(GameContainer container, int delta, GestorColision gestor) throws SlickException{
@@ -104,8 +105,8 @@ public class Jugador implements IColisionable{
 
     @Override
     public void sincronizarArea() {
-        colision.setX(jugador.getPosicion().getX());
-        colision.setY(jugador.getPosicion().getY());
+        colision.setX(jugador.getPosicion().getX()-100);
+        colision.setY(jugador.getPosicion().getY()+30);
     }
 
     @Override

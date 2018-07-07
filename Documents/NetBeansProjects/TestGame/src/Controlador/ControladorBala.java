@@ -29,7 +29,7 @@ public class ControladorBala implements Controlador{
         gestor.registarCuerpo(bala);
     }
     @Override
-    public void draw(){
+    public void draw(Graphics g){
         for (int i = 0; i < balas.size(); i++) {
             balas.get(i).draw();
         }

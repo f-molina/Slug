@@ -38,6 +38,7 @@ public class SpriteMovil extends Sprite {
     }
     
     public void update2(int delta){
+        
         float x=posicion.getX()+velocidad.getX()*((float)delta/1000);
         float y=posicion.getY()-velocidad.getY()*((float)delta/1000);
         this.setPosicion(x,y);

@@ -8,6 +8,7 @@ import Interfaces.Controlador;
 import Personajes.Enemigo;
 import game.Game;
 import java.util.ArrayList;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 /**
@@ -31,9 +32,10 @@ public class ControladorEnemigo implements Controlador{
     }
 
     @Override
-    public void draw() {
+    public void draw(Graphics g) {
         for(int i = 0; i< enemigos.size(); i++){
             enemigos.get(i).draw();
+            enemigos.get(i).render(g);
         }
     }
 

@@ -83,9 +83,10 @@ public class Game extends BasicGameState {
         //jugador, balas, enemigo
         g.setColor(Color.black);
         jugador.render(g);
-        balas.draw();
-        enemigos.draw();
-        meteoros.draw();
+        
+        balas.draw(g);
+        enemigos.draw(g);
+        meteoros.draw(g);
         //vida
         heart.draw(10,20);
         heart.draw(50,20);

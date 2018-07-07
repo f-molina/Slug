@@ -8,6 +8,7 @@ import Interfaces.Controlador;
 import Personajes.Meteoro;
 import game.Game;
 import java.util.ArrayList;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 /**
@@ -30,9 +31,10 @@ public class ControladorMeteoro implements Controlador{
     }
 
     @Override
-    public void draw() {
+    public void draw(Graphics g) {
         for(int i = 0; i< meteoros.size(); i++){
             meteoros.get(i).draw();
+            meteoros.get(i).render(g);
         }
     }
 
@@ -46,7 +48,7 @@ public class ControladorMeteoro implements Controlador{
     @Override
     public void delete() {
         for(int i = 0; i< meteoros.size(); i++){
-            if(meteoros.get(i).getAreaColision().getY()>500){
+            if(meteoros.get(i).getAreaColision().getY()>1500){
                 meteoros.remove(i);
             }
         }

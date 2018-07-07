@@ -8,6 +8,7 @@ package Personajes;
 import Interfaces.IColisionable;
 import game.Punto;
 import game.SpriteMovil;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
@@ -17,13 +18,16 @@ import org.newdawn.slick.geom.Shape;
  * @author EdwinLovo
  */
 public class Meteoro implements IColisionable{
-    
     private SpriteMovil meteoro;
     public static Rectangle colision;
     
     public Meteoro(float x, float y) throws SlickException{
-        meteoro = new SpriteMovil("data/meteoro2.png", new Punto(x,y), new Punto(0,-250));
+        meteoro = new SpriteMovil("data/meteoro2.png", new Punto(x,y), new Punto(0,-350));
         colision = new Rectangle(meteoro.getPosicion().getX(), meteoro.getPosicion().getY(), meteoro.getWidth(), meteoro.getHeight());
+    }
+    public void render(Graphics g){
+        
+        g.drawRect(colision.getX(), colision.getY(), colision.getWidth(), colision.getHeight());
     }
     
     public void draw(){
