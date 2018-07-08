@@ -20,6 +20,7 @@ public class Lol extends StateBasedGame{
     public static final int GAME = 2;
     public static final int STORE = 3;
     public static final int GAMEOVER = 4;
+    public static final int ENDGAME = 5;
 
     public static final int WIDTH   = 950;
     public static final int HEIGHT  = 540;
@@ -37,6 +38,7 @@ public class Lol extends StateBasedGame{
         this.addState(new Game());
         this.addState(new Tienda());
         this.addState(new GameOver());
+        this.addState(new EndScreen());
     }
 
     public static void main(String[] args) {

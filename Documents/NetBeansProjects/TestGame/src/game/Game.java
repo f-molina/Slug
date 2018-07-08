@@ -31,7 +31,7 @@ public class Game extends BasicGameState {
     private ControladorBala balas;
     private Jugador jugador;
     private Input entrada;
-    Image b, r, pause, heart, coin;
+    Image b, r, pause, heart, coin, bossMap, rock;
     private boolean quit = false;
     private ControladorEnemigo enemigos;
     private Random numeros;
@@ -51,6 +51,8 @@ public class Game extends BasicGameState {
     
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        bossMap = new Image("data/bossmap.png");
+        rock = new Image("data/rockss.png");
         //imagenes
         pause = new Image("data/pause.png");
         b = new Image("data/b2.png");
@@ -79,6 +81,16 @@ public class Game extends BasicGameState {
         b.draw((int) xMap+2850, (int) yMap);
         b.draw((int) xMap+3800, (int) yMap);
         b.draw((int) xMap+4750, (int) yMap);
+        b.draw((int) xMap+5700, (int) yMap);
+        b.draw((int) xMap+6650, (int) yMap);
+        b.draw((int) xMap+7600, (int) yMap);
+        b.draw((int) xMap+8550, (int) yMap);
+        
+        bossMap.draw((int)xMap+9500, (int)yMap);
+        rock.draw((int)xMap+950, 350);
+        rock.draw((int)xMap+1035, 350);
+        rock.draw((int)xMap+1120, 350);
+        rock.draw((int)xMap+1205, 350);
         
         //jugador, balas, enemigo
         g.setColor(Color.black);
@@ -151,6 +163,8 @@ public class Game extends BasicGameState {
             //pantalla de game over, se ha puesto aca para mientras por prueba
         }else if(entrada.isKeyPressed(Input.KEY_Z)){
             sbg.enterState(4);
+        }else if(entrada.isKeyPressed(Input.KEY_P)){
+            sbg.enterState(5);
         }
     }
 

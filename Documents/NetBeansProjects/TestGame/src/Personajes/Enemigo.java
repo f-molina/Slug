@@ -4,11 +4,7 @@
  * and open the template in the editor.
  */
 package Personajes;
-
-import Personajes.Bala;
-import Controlador.GestorColision;
 import Interfaces.IColisionable;
-import static Personajes.Meteoro.colision;
 import game.Punto;
 import game.SpriteMovil;
 import org.newdawn.slick.Graphics;

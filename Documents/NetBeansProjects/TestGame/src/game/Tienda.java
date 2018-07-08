@@ -20,7 +20,7 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class Tienda extends BasicGameState{
     
-    Image bck, soldier, ret, coin, rage, buy;
+    Image bck, soldier, ret, coin, rage, buy, heart;
     public static final int ID = 3;
 
     @Override
@@ -36,13 +36,14 @@ public class Tienda extends BasicGameState{
         coin = new Image("data/coin.png");
         rage = new Image("data/rage.png");
         buy = new Image("data/buy.png");
+        heart = new Image("data/heart2.png");
         
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         bck.draw();
-        soldier.draw(100,50);
+        heart.draw(130,75);
         rage.draw(140,300);
         ret.draw(860,450);
         
