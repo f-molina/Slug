@@ -46,7 +46,7 @@ public class Lol extends StateBasedGame{
             AppGameContainer app = new AppGameContainer(new Lol("My Game v" + VERSION));
             app.setDisplayMode(WIDTH, HEIGHT, false);
             app.setTargetFrameRate(FPS);
-            app.setShowFPS(true);
+            app.setShowFPS(false);
             app.start();
         } catch(SlickException e) {
             e.printStackTrace();

@@ -18,4 +18,5 @@ public interface Controlador {
     public void draw(Graphics g);
     public void update(int delta);
     public void delete();
+    public int delete2();
 }

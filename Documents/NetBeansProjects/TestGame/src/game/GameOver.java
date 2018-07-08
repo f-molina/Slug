@@ -9,6 +9,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -44,6 +45,12 @@ public class GameOver extends BasicGameState{
 
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
+        
+        Input input = gc.getInput();
+        if(input.isKeyPressed(Input.KEY_N)){
+            sbg.getContainer().reinit();
+            sbg.enterState(2);
+        }
 
     }
     

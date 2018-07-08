@@ -52,7 +52,7 @@ public class Menu extends BasicGameState{
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         int posX = Mouse.getX();
         int posY = Mouse.getY();
-        //falta posicion mouse en Y
+
         if((posX>600 && posX<880) && (posY>280 && posY<420)){
             if(Mouse.isButtonDown(0)){
                 sbg.enterState(2);

@@ -24,6 +24,7 @@ import org.newdawn.slick.geom.Shape;
  * @author fmolina
  */
 public class Jugador implements IColisionable{
+    
      private long score;
     private SpriteMovil jugador;
     private float x = 60f, y = 370f;
@@ -33,8 +34,27 @@ public class Jugador implements IColisionable{
     private ControladorBala bala;
     public static Rectangle colision;
     private ControladorEnemigo enemigo;
-    
+    private long monedas=0;
+    private int vida=3;
 
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public long getMonedas() {
+        return monedas;
+    }
+
+    public void setMonedas(long monedas) {
+        this.monedas = monedas;
+    }
+
+  
+  
     public long getScore() {
         return score;
     }

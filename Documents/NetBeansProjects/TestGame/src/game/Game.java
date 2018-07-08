@@ -10,6 +10,7 @@ import Controlador.ControladorBala;
 import Controlador.ControladorEnemigo;
 import Controlador.ControladorMeteoro;
 import Controlador.GestorColision;
+import java.util.ArrayList;
 import java.util.Random;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -25,7 +26,7 @@ import org.newdawn.slick.state.StateBasedGame;
  * @author Frank
  */
 public class Game extends BasicGameState {
-    
+    public ArrayList<Image> corazones;
     public static final int ID = 2;
     public static float xMap=0, yMap=0;
     private ControladorBala balas;
@@ -58,6 +59,7 @@ public class Game extends BasicGameState {
         b = new Image("data/b2.png");
         heart = new Image("data/heart.png");
         coin = new Image("data/coin.png");
+        
         //inicializadores
         jugador = new Jugador();
         jugador.init();
@@ -101,14 +103,18 @@ public class Game extends BasicGameState {
         meteoros.draw(g);
         //vida
         heart.draw(10,20);
-        heart.draw(50,20);
-        heart.draw(90,20);
+        //heart.draw(50,20);
+        //heart.draw(90,20);
+    
         
         //currency
         g.drawRect(10, 60, 100, 30);
+        g.drawRect(10,20,100,30);
         coin.draw(10,60);
         g.drawString("        "+jugador.getScore()/100, 80, 25);
-        g.drawString("     "+((jugador.getScore()/100)/5), 30, 63);
+        jugador.setMonedas((jugador.getScore()/100)/5);
+        g.drawString("     "+((jugador.getMonedas())), 30, 63);
+        g.drawString(" "+jugador.getVida(), 70, 23);
         //menu in-game cuando presiona esc
         if(quit==true){
             pause.draw();
@@ -125,25 +131,32 @@ public class Game extends BasicGameState {
     
     @Override
     public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
+        int n1=0,n2=0;
         entrada = container.getInput();
         jugador.update(container, delta,gestor);
         balas.update(delta);
         enemigos.update(delta);
         meteoros.update(delta);
         enemigos.delete();
+        n1=enemigos.delete2();
         meteoros.delete();
+        n2=meteoros.delete2();
         balas.delete();
         relojEnemigo += delta;
         relojMeteoro += delta;
         gestor.comprobarColisiones();
-        jugador.setScore((jugador.getScore()+1));
+        if(quit==false){
+        jugador.setScore((jugador.getScore()+1));}
+        jugador.setVida((jugador.getVida()-n1)-n2);
+        //jugador.setVida((jugador.getVida()-n2));
+        
         
         if(relojEnemigo > 3500 + numeros.nextInt(2000)){
             lanzarEnemigo();
             relojEnemigo=0;
         }
         
-        if(relojMeteoro > 1000 + xMeteoro.nextInt(2000)){
+        if(relojMeteoro > 2000 + xMeteoro.nextInt(2000)){
             lanzarMeteoro(xMeteoro);
             relojMeteoro=0;
         }
@@ -166,6 +179,9 @@ public class Game extends BasicGameState {
         }else if(entrada.isKeyPressed(Input.KEY_P)){
             sbg.enterState(5);
         }
+        if(jugador.getVida()==0){
+            sbg.enterState(4);
+        }
     }
 
    public void lanzarEnemigo() throws SlickException{
@@ -173,6 +189,6 @@ public class Game extends BasicGameState {
    }
    
    public void lanzarMeteoro(Random xMeteoro) throws SlickException{
-       meteoros.add(xMeteoro.nextInt(1000), -10, gestor);
+       meteoros.add(xMeteoro.nextInt(700), -10, gestor);
    }
 }
