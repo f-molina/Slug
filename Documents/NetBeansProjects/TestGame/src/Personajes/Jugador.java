@@ -34,8 +34,8 @@ public class Jugador implements IColisionable{
     private ControladorBala bala;
     public static Rectangle colision;
     private ControladorEnemigo enemigo;
-
-  private int vida=3;
+    private long monedas=0;
+    private int vida=3;
 
     public int getVida() {
         return vida;
@@ -44,10 +44,17 @@ public class Jugador implements IColisionable{
     public void setVida(int vida) {
         this.vida = vida;
     }
+
+    public long getMonedas() {
+        return monedas;
+    }
+
+    public void setMonedas(long monedas) {
+        this.monedas = monedas;
+    }
+
   
   
-    
-    
     public long getScore() {
         return score;
     }

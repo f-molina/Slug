@@ -100,7 +100,8 @@ public class Game extends BasicGameState {
         g.drawRect(10,20,100,30);
         coin.draw(10,60);
         g.drawString("        "+jugador.getScore()/100, 80, 25);
-        g.drawString("     "+((jugador.getScore()/100)/5), 30, 63);
+        jugador.setMonedas((jugador.getScore()/100)/5);
+        g.drawString("     "+((jugador.getMonedas())), 30, 63);
         g.drawString(" "+jugador.getVida(), 70, 23);
         //menu in-game cuando presiona esc
         if(quit==true){
