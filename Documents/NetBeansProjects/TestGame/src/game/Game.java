@@ -10,6 +10,7 @@ import Controlador.ControladorBala;
 import Controlador.ControladorEnemigo;
 import Controlador.ControladorMeteoro;
 import Controlador.GestorColision;
+import java.util.ArrayList;
 import java.util.Random;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -25,7 +26,7 @@ import org.newdawn.slick.state.StateBasedGame;
  * @author Frank
  */
 public class Game extends BasicGameState {
-    
+    ArrayList<Image> corazones;
     public static final int ID = 2;
     public static float xMap=0, yMap=0;
     private ControladorBala balas;
@@ -56,6 +57,7 @@ public class Game extends BasicGameState {
         b = new Image("data/b2.png");
         heart = new Image("data/heart.png");
         coin = new Image("data/coin.png");
+        
         //inicializadores
         jugador = new Jugador();
         jugador.init();
@@ -89,15 +91,17 @@ public class Game extends BasicGameState {
         meteoros.draw(g);
         //vida
         heart.draw(10,20);
-        heart.draw(50,20);
-        heart.draw(90,20);
+        //heart.draw(50,20);
+        //heart.draw(90,20);
+    
         
         //currency
         g.drawRect(10, 60, 100, 30);
+        g.drawRect(10,20,100,30);
         coin.draw(10,60);
         g.drawString("        "+jugador.getScore()/100, 80, 25);
         g.drawString("     "+((jugador.getScore()/100)/5), 30, 63);
-        g.drawString("LAS VIDAS QUE QUEDAN SON        "+jugador.getVida(), 80, 100);
+        g.drawString(" "+jugador.getVida(), 70, 23);
         //menu in-game cuando presiona esc
         if(quit==true){
             pause.draw();
