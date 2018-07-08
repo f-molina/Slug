@@ -48,4 +48,10 @@ public class ControladorBala implements Controlador{
             }
         }
     }
+    @Override
+    public int delete2(){
+        return 0;
+        
+    }
+
 }

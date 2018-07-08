@@ -97,6 +97,7 @@ public class Game extends BasicGameState {
         coin.draw(10,60);
         g.drawString("        "+jugador.getScore()/100, 80, 25);
         g.drawString("     "+((jugador.getScore()/100)/5), 30, 63);
+        g.drawString("LAS VIDAS QUE QUEDAN SON        "+jugador.getVida(), 80, 100);
         //menu in-game cuando presiona esc
         if(quit==true){
             pause.draw();
@@ -113,18 +114,24 @@ public class Game extends BasicGameState {
     
     @Override
     public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
+        int n1=0,n2=0;
         entrada = container.getInput();
         jugador.update(container, delta,gestor);
         balas.update(delta);
         enemigos.update(delta);
         meteoros.update(delta);
         enemigos.delete();
+        n1=enemigos.delete2();
         meteoros.delete();
+        n2=meteoros.delete2();
         balas.delete();
         relojEnemigo += delta;
         relojMeteoro += delta;
         gestor.comprobarColisiones();
         jugador.setScore((jugador.getScore()+1));
+        jugador.setVida((jugador.getVida()-n1)-n2);
+        //jugador.setVida((jugador.getVida()-n2));
+        
         
         if(relojEnemigo > 3500 + numeros.nextInt(2000)){
             lanzarEnemigo();

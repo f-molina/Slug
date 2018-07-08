@@ -19,6 +19,7 @@ public class ControladorEnemigo implements Controlador{
     private Game game;
     private ArrayList<Enemigo> enemigos;
     
+    
     public ControladorEnemigo(){
         enemigos = new ArrayList<Enemigo>();
        
@@ -49,10 +50,23 @@ public class ControladorEnemigo implements Controlador{
     @Override
     public void delete() {
         for(int i = 0; i< enemigos.size(); i++){
-            if(enemigos.get(i).getAreaColision().getX()<-200){
+            if(enemigos.get(i).getAreaColision().getX()<-200 && enemigos.get(i).getAreaColision().getX()>-300){
                 enemigos.remove(i);
+                
             }
         }
+    }
+    @Override
+    public int delete2(){
+        int n=0;
+        for(int i = 0; i< enemigos.size(); i++){
+            if(enemigos.get(i).getAreaColision().getX()<-4000 && enemigos.get(i).getAreaColision().getX()>-6000){
+                enemigos.remove(i);
+                System.out.println("SEFUE");
+                n=1;
+            }
+        }
+        return n;
     }
 
 }

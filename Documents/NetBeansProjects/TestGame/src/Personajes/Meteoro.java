@@ -55,6 +55,10 @@ public class Meteoro implements IColisionable{
         if(Jugador.colision.intersects(Meteoro.colision)){
             meteoro.getPosicion().setY(5000);
         }
+        else if(meteoro.getPosicion().getY()>900){
+            meteoro.getPosicion().setY(2000);
+        }
+        
     }
     
 }

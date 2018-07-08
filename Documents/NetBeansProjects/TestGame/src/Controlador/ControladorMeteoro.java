@@ -48,12 +48,23 @@ public class ControladorMeteoro implements Controlador{
     @Override
     public void delete() {
         for(int i = 0; i< meteoros.size(); i++){
-            if(meteoros.get(i).getAreaColision().getY()>1500){
+            if(meteoros.get(i).getAreaColision().getY()>1500  && meteoros.get(i).getAreaColision().getY()<3500){
                 meteoros.remove(i);
             }
         }
     }
-    
+    @Override
+    public int delete2(){
+        int n=0;
+        for(int i = 0; i< meteoros.size(); i++){
+            if(meteoros.get(i).getAreaColision().getY()>4500  && meteoros.get(i).getAreaColision().getY()<7500){
+                meteoros.remove(i);
+                System.out.println("SE FUE METEORO");
+                n=1;
+            }
+        }
+        return n;
+    }
 
     
     
