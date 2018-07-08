@@ -61,12 +61,9 @@ public class Enemigo implements IColisionable{
     public void alColisionar(IColisionable colision) {
         if(Bala.colision.intersects(Enemigo.colision)){
             enemigo.getPosicion().setX(-5000);
-            
-             }
-        
+        }
         else if(Jugador.colision.intersects(Enemigo.colision)){
             enemigo.getPosicion().setX(-5000);
         }
     }
-    
 }

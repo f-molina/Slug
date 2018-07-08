@@ -131,7 +131,7 @@ public class Game extends BasicGameState {
             relojEnemigo=0;
         }
         
-        if(relojMeteoro > 1000 + xMeteoro.nextInt(2000)){
+        if(relojMeteoro > 2000 + xMeteoro.nextInt(2000)){
             lanzarMeteoro(xMeteoro);
             relojMeteoro=0;
         }
@@ -159,6 +159,6 @@ public class Game extends BasicGameState {
    }
    
    public void lanzarMeteoro(Random xMeteoro) throws SlickException{
-       meteoros.add(xMeteoro.nextInt(1000), -10, gestor);
+       meteoros.add(xMeteoro.nextInt(700), -10, gestor);
    }
 }

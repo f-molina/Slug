@@ -22,7 +22,7 @@ public class Meteoro implements IColisionable{
     public static Rectangle colision;
     
     public Meteoro(float x, float y) throws SlickException{
-        meteoro = new SpriteMovil("data/meteoro2.png", new Punto(x,y), new Punto(0,-350));
+        meteoro = new SpriteMovil("data/meteoro2.png", new Punto(x,y), new Punto(0,-550));
         colision = new Rectangle(meteoro.getPosicion().getX(), meteoro.getPosicion().getY(), meteoro.getWidth(), meteoro.getHeight());
     }
     public void render(Graphics g){
