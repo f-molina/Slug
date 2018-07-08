@@ -133,7 +133,8 @@ public class Game extends BasicGameState {
         relojEnemigo += delta;
         relojMeteoro += delta;
         gestor.comprobarColisiones();
-        jugador.setScore((jugador.getScore()+1));
+        if(quit==false){
+        jugador.setScore((jugador.getScore()+1));}
         jugador.setVida((jugador.getVida()-n1)-n2);
         //jugador.setVida((jugador.getVida()-n2));
         
