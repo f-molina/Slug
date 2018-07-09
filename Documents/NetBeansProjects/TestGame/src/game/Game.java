@@ -121,7 +121,7 @@ public class Game extends BasicGameState {
         pd.setMonedas((pd.getScore()/100)/5);
         g.drawString("     "+((pd.getMonedas())), 30, 63);
         g.drawString(" "+pd.getVida(), 70, 23);
-        g.drawString(" "+pd.getScore()/100, 120, 23);
+        //g.drawString(" "+pd.getScore()/100, 120, 23);
         //menu in-game cuando presiona esc
         if(quit==true){
             pause.draw();
@@ -189,9 +189,9 @@ public class Game extends BasicGameState {
         }else if(entrada.isKeyPressed(Input.KEY_P)){
             sbg.enterState(5);
         }
-        if(pd.getVida()==0){
+       /* if(pd.getVida()==0){
             sbg.getState(2).init(container, sbg);
-        }
+        }*/
         
         if(xMap<=-11395){
             sbg.enterState(5);

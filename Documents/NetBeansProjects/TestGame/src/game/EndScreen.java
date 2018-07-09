@@ -39,7 +39,7 @@ public class EndScreen extends BasicGameState{
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         end.draw();
         g.drawString("LEVEL COMPLETED!!!",415 , 100);
-        g.drawString("Puntos: "+pd.getScore2(), 425, 200);
+        g.drawString("Puntos: "+pd.getScore2()/100, 425, 200);
         replay.draw(425,250);
         out.draw(425,300);
         g.drawString("x"+Mouse.getX(), 600, 150);
