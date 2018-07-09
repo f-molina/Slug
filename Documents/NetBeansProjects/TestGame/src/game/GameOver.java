@@ -47,7 +47,7 @@ public class GameOver extends BasicGameState{
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         
         Input input = gc.getInput();
-        if(input.isKeyPressed(Input.KEY_N)){
+        if(input.isKeyDown(Input.KEY_N)){
             sbg.getState(2).init(gc, sbg);
             sbg.enterState(2);
         }

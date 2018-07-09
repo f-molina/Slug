@@ -190,7 +190,7 @@ public class Game extends BasicGameState {
             sbg.enterState(5);
         }
         if(pd.getVida()==0){
-            sbg.enterState(4);
+            sbg.getState(2).init(container, sbg);
         }
         
         if(xMap<=-11395){

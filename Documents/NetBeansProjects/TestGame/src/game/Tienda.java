@@ -69,7 +69,6 @@ public class Tienda extends BasicGameState{
 
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
-
         int posX = Mouse.getX();
         int posY = Mouse.getY();
         
