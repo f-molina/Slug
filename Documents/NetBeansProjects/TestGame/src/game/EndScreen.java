@@ -21,7 +21,7 @@ public class EndScreen extends BasicGameState{
 
     public static final int ID = 5;
     Image end, replay, out;
-    private PropiedadesJugador pd;
+    public static PropiedadesJugador pd = PropiedadesJugador.getInstance();
     
     @Override
     public int getID() {
@@ -54,8 +54,11 @@ public class EndScreen extends BasicGameState{
         
         if((posX>430 && posX<515) && (posY>256 && posY<285)){
             if(Mouse.isButtonDown(0)){
-                
+                Game.xMap=0;
                 sbg.enterState(1);
+                pd.setMonedas(0);
+                pd.setVida(3);
+                pd.setScore(0);
             }
         }else if((posX>430 && posX<515) && (posY>207 && posY<238)){
             if(Mouse.isButtonDown(0)){
