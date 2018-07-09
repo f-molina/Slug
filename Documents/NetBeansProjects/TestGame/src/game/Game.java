@@ -130,7 +130,7 @@ public class Game extends BasicGameState {
             g.drawString("Reanudar Juego (R)", 400, 150);
             g.drawString("Menu Principal (M)", 400, 200);
             g.drawString("Tienda (T)", 400, 250);
-            g.drawString("Salir (S)", 400, 300);
+            g.drawString("Salir (O)", 400, 300);
             if(quit==false){
                 g.clear();
             }
@@ -187,7 +187,7 @@ public class Game extends BasicGameState {
             sbg.enterState(1);
         }else if(entrada.isKeyPressed(Input.KEY_T)){
             sbg.enterState(3);    
-        }else if(entrada.isKeyPressed(Input.KEY_S)){
+        }else if(entrada.isKeyPressed(Input.KEY_O)){
             System.exit(0);
             //pantalla de game over, se ha puesto aca para mientras por prueba
         }else if(entrada.isKeyPressed(Input.KEY_Z)){

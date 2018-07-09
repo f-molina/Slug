@@ -139,7 +139,7 @@ private long score2;
         /*if(input.isMousePressed(0)){
             bala.add(jugador.getPosicion().getX()+30,(jugador.getPosicion().getY()+jugador.getHeight()/2)-15,gestor);
         }*/
-        if(input.isKeyPressed(Input.KEY_TAB)){
+        if(input.isKeyPressed(Input.KEY_S)){
             bala.add(jugador.getPosicion().getX()+30,(jugador.getPosicion().getY()+jugador.getHeight()/2)-15,gestor);
             
         }
