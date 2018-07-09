@@ -10,6 +10,7 @@ import Controlador.ControladorBala;
 import Controlador.ControladorEnemigo;
 import Controlador.ControladorMeteoro;
 import Controlador.GestorColision;
+import Singleton.PropiedadesJugador;
 import java.util.ArrayList;
 import java.util.Random;
 import org.newdawn.slick.Color;
@@ -41,6 +42,7 @@ public class Game extends BasicGameState {
     private int relojMeteoro = 0;
     private Random xMeteoro;
     private ControladorMeteoro meteoros;
+    public static PropiedadesJugador pd = PropiedadesJugador.getInstance(); //instancia del singleton
     
     @Override
     public int getID() {
@@ -115,10 +117,10 @@ public class Game extends BasicGameState {
         g.drawRect(10, 60, 100, 30);
         g.drawRect(10,20,100,30);
         coin.draw(10,60);
-        g.drawString("        "+jugador.getScore()/100, 80, 25);
-        jugador.setMonedas((jugador.getScore()/100)/5);
-        g.drawString("     "+((jugador.getMonedas())), 30, 63);
-        g.drawString(" "+jugador.getVida(), 70, 23);
+        g.drawString("        "+pd.getScore()/100, 80, 25);
+        pd.setMonedas((pd.getScore()/100)/5);
+        g.drawString("     "+((pd.getMonedas())), 30, 63);
+        g.drawString(" "+pd.getVida(), 70, 23);
         //menu in-game cuando presiona esc
         if(quit==true){
             pause.draw();
@@ -150,8 +152,8 @@ public class Game extends BasicGameState {
         relojMeteoro += delta;
         gestor.comprobarColisiones();
         if(quit==false){
-        jugador.setScore((jugador.getScore()+1));}
-        jugador.setVida((jugador.getVida()-n1)-n2);
+        pd.setScore((pd.getScore()+1));}
+        pd.setVida((pd.getVida()-n1)-n2);
         //jugador.setVida((jugador.getVida()-n2));
         
         
@@ -160,7 +162,7 @@ public class Game extends BasicGameState {
             relojEnemigo=0;
         }
         
-        if(relojMeteoro > 2000 + xMeteoro.nextInt(2000)){
+        if(relojMeteoro > 1500 + xMeteoro.nextInt(2000)){
             lanzarMeteoro(xMeteoro);
             relojMeteoro=0;
         }
@@ -183,7 +185,7 @@ public class Game extends BasicGameState {
         }else if(entrada.isKeyPressed(Input.KEY_P)){
             sbg.enterState(5);
         }
-        if(jugador.getVida()==0){
+        if(pd.getVida()==0){
             sbg.enterState(4);
         }
         

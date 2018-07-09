@@ -9,6 +9,7 @@ import Controlador.ControladorBala;
 import Controlador.ControladorEnemigo;
 import Controlador.GestorColision;
 import Interfaces.IColisionable;
+import Singleton.PropiedadesJugador;
 import game.Game;
 import game.Punto;
 import game.SpriteMovil;
@@ -36,6 +37,7 @@ public class Jugador implements IColisionable{
     private ControladorEnemigo enemigo;
     private long monedas=0;
     private int vida=3;
+    public static PropiedadesJugador pd = PropiedadesJugador.getInstance();
 
     public int getVida() {
         return vida;
@@ -70,7 +72,8 @@ public class Jugador implements IColisionable{
         colision = new Rectangle(jugador.getPosicion().getX()-100, jugador.getPosicion().getY()+30, jugador.getWidth()-70, jugador.getHeight()-30);
         jumping = false;
         verticalSpeed = 0.0f;
-        score=0;
+        //score=0;
+        pd.setScore(0);
     }
     
     public void render(Graphics g){
@@ -98,9 +101,9 @@ public class Jugador implements IColisionable{
         
         if (input.isKeyDown(Input.KEY_A)) {
             if(Game.xMap>-1){
-                Game.xMap -= delta*0.1f;
+                Game.xMap -= delta*0.2f;
             }else{
-                Game.xMap += delta*0.1f;
+                Game.xMap += delta*0.2f;
             }   
             
         } else if (input.isKeyDown(Input.KEY_D)) {

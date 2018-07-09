@@ -6,6 +6,7 @@
 package game;
 
 import Personajes.Jugador;
+import Singleton.PropiedadesJugador;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -24,6 +25,7 @@ public class Tienda extends BasicGameState{
     private Jugador jugador;
     Image bck, soldier, ret, coin, rage, buy, heart;
     public static final int ID = 3;
+    public static PropiedadesJugador pd = PropiedadesJugador.getInstance(); //instancia del singleton
 
     @Override
     public int getID() {
