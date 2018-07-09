@@ -105,7 +105,7 @@ public class Jugador implements IColisionable{
             
         } else if (input.isKeyDown(Input.KEY_D)) {
                 Game.xMap-= delta*0.4f;
-                if(Game.xMap<=-9500){
+                if(Game.xMap<=-11400){
                     Game.xMap+= delta*0.4f;
                 }
 

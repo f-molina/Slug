@@ -5,6 +5,7 @@
  */
 package game;
 
+import Personajes.Jugador;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -20,6 +21,7 @@ public class EndScreen extends BasicGameState{
 
     public static final int ID = 5;
     Image end, replay;
+    private Jugador jugador;
     
     @Override
     public int getID() {
@@ -30,14 +32,16 @@ public class EndScreen extends BasicGameState{
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         end = new Image("data/end.png");
         replay = new Image("data/replay.png");
+        jugador = new Jugador();
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         
         end.draw();
-        g.drawString("LEVEL COMPLETED!!!",425 , 100);
-        replay.draw(850,500);
+        g.drawString("LEVEL COMPLETED!!!",415 , 100);
+        g.drawString("Puntos: "+jugador.getScore(), 425, 200);
+        replay.draw(425,275);
     }
 
     @Override

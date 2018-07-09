@@ -87,8 +87,10 @@ public class Game extends BasicGameState {
         b.draw((int) xMap+6650, (int) yMap);
         b.draw((int) xMap+7600, (int) yMap);
         b.draw((int) xMap+8550, (int) yMap);
+        b.draw((int)xMap+9500, (int)yMap);
+        b.draw((int) xMap+10450, (int) yMap);
+        bossMap.draw((int) xMap+11400, (int) yMap);
         
-        bossMap.draw((int)xMap+9500, (int)yMap);
         rock.draw((int)xMap+950, 350);
         rock.draw((int)xMap+1035, 350);
         rock.draw((int)xMap+1120, 350);
@@ -105,7 +107,9 @@ public class Game extends BasicGameState {
         heart.draw(10,20);
         //heart.draw(50,20);
         //heart.draw(90,20);
-    
+        
+        //debug x
+        g.drawString("x"+xMap, 350, 150);
         
         //currency
         g.drawRect(10, 60, 100, 30);
@@ -181,6 +185,10 @@ public class Game extends BasicGameState {
         }
         if(jugador.getVida()==0){
             sbg.enterState(4);
+        }
+        
+        if(xMap<=-11395){
+            sbg.enterState(5);
         }
     }
 

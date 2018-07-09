@@ -5,6 +5,7 @@
  */
 package game;
 
+import Personajes.Jugador;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -20,6 +21,7 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class Tienda extends BasicGameState{
     
+    private Jugador jugador;
     Image bck, soldier, ret, coin, rage, buy, heart;
     public static final int ID = 3;
 
@@ -37,6 +39,7 @@ public class Tienda extends BasicGameState{
         rage = new Image("data/rage.png");
         buy = new Image("data/buy.png");
         heart = new Image("data/heart2.png");
+        jugador = new Jugador();
         
     }
 
@@ -58,7 +61,6 @@ public class Tienda extends BasicGameState{
         g.drawRect(800, 40, 100, 30);
         g.setColor(Color.black);
         coin.draw(800,40);
-
     }
 
     @Override
