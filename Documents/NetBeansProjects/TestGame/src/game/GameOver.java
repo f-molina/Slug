@@ -5,6 +5,7 @@
  */
 package game;
 
+import Singleton.PropiedadesJugador;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -22,6 +23,7 @@ public class GameOver extends BasicGameState{
     
     Image bck, over;
     public static final int ID = 4;
+    public static PropiedadesJugador pd = PropiedadesJugador.getInstance();
 
     @Override
     public int getID() {
@@ -48,8 +50,12 @@ public class GameOver extends BasicGameState{
         
         Input input = gc.getInput();
         if(input.isKeyDown(Input.KEY_N)){
-            sbg.getState(2).init(gc, sbg);
-            sbg.enterState(1);
+            Game.xMap=0;
+                sbg.enterState(1);
+                pd.setMonedas(0);
+                pd.setVida(3);
+                pd.setScore(0);
+                pd.setScore2(0);
         }
 
     }
