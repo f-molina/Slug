@@ -27,7 +27,7 @@ public class Meteoro implements IColisionable{
     }
     public void render(Graphics g){
         
-        g.drawRect(colision.getX(), colision.getY(), colision.getWidth(), colision.getHeight());
+        //g.drawRect(colision.getX(), colision.getY(), colision.getWidth(), colision.getHeight());
     }
     
     public void draw(){

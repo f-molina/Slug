@@ -59,6 +59,7 @@ public class EndScreen extends BasicGameState{
                 pd.setMonedas(0);
                 pd.setVida(3);
                 pd.setScore(0);
+                pd.setScore2(0);
             }
         }else if((posX>430 && posX<515) && (posY>207 && posY<238)){
             if(Mouse.isButtonDown(0)){

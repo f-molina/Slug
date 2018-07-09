@@ -101,7 +101,7 @@ private long score2;
     public void render(Graphics g){
         jugador.draw((int)x, (int)y);
         bala.draw(g);
-        g.drawRect(colision.getX(), colision.getY(), colision.getWidth(), colision.getHeight());
+        //g.drawRect(colision.getX(), colision.getY(), colision.getWidth(), colision.getHeight());
     }
     
     public void update(GameContainer container, int delta, GestorColision gestor) throws SlickException{
