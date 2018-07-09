@@ -56,9 +56,11 @@ public class Tienda extends BasicGameState{
         buy.draw(350,30);
         buy.draw(350,250);
         
-        //rect jugador extra
+        //rect vida extra
+        g.drawString("Vida extra", 150, 55);
         g.drawRect(115, 75, 175, 175);
         //rect potenciador
+        g.drawString("Potenciador puntos", 125, 255);
         g.drawRect(115, 275, 175, 175);
         //rect barra monedas
         g.drawRect(800, 40, 100, 30);

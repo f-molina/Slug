@@ -118,7 +118,7 @@ public class Game extends BasicGameState {
         g.drawRect(10, 60, 100, 30);
         g.drawRect(10,20,100,30);
         coin.draw(10,60);
-        g.drawString("        "+pd.getScore2()/100, 80, 25);
+        g.drawString("     SCORE:   "+pd.getScore2()/100, 400, 25);
         pd.setMonedas((pd.getScore()/100)/5);
         g.drawString("     "+((pd.getMonedas())), 30, 63);
         g.drawString(" "+pd.getVida(), 70, 23);

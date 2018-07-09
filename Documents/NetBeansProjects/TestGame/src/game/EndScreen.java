@@ -42,8 +42,6 @@ public class EndScreen extends BasicGameState{
         g.drawString("Puntos: "+pd.getScore2()/100, 425, 200);
         replay.draw(425,250);
         out.draw(425,300);
-        g.drawString("x"+Mouse.getX(), 600, 150);
-        g.drawString("y"+Mouse.getY(), 600, 250);
     }
 
     @Override

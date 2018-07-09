@@ -123,9 +123,9 @@ private long score2;
         
         if (input.isKeyDown(Input.KEY_A)) {
             if(Game.xMap>-1){
-                Game.xMap -= delta*0.2f;
+                Game.xMap -= delta*0.4f;
             }else{
-                Game.xMap += delta*0.2f;
+                Game.xMap += delta*0.4f;
             }   
             
         } else if (input.isKeyDown(Input.KEY_D)) {
