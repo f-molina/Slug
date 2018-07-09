@@ -189,7 +189,7 @@ public class Game extends BasicGameState {
         }else if(entrada.isKeyPressed(Input.KEY_P)){
             sbg.enterState(5);
         }
-       /* if(pd.getVida()==0){
+        /*if(pd.getVida()==0){
             sbg.getState(2).init(container, sbg);
         }*/
         

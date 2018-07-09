@@ -30,6 +30,10 @@ public class Lol extends StateBasedGame{
     public Lol(String appName) {
         super("SlugTest");
     }
+     
+    public int getID() {
+        return Game.ID;
+    }
 
     // llama los states de cada clase con su id
     public void initStatesList(GameContainer gc) throws SlickException {

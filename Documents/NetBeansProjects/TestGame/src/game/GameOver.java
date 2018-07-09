@@ -49,7 +49,7 @@ public class GameOver extends BasicGameState{
         Input input = gc.getInput();
         if(input.isKeyDown(Input.KEY_N)){
             sbg.getState(2).init(gc, sbg);
-            sbg.enterState(2);
+            sbg.enterState(1);
         }
 
     }

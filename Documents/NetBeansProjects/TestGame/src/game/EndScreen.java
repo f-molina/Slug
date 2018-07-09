@@ -54,7 +54,8 @@ public class EndScreen extends BasicGameState{
         
         if((posX>430 && posX<515) && (posY>256 && posY<285)){
             if(Mouse.isButtonDown(0)){
-                sbg.enterState(2);
+                
+                sbg.enterState(1);
             }
         }else if((posX>430 && posX<515) && (posY>207 && posY<238)){
             if(Mouse.isButtonDown(0)){
