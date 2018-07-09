@@ -12,10 +12,11 @@ package Singleton;
 public class PropiedadesJugador {
     
     private static PropiedadesJugador instance;
-    
+    private static long score2;
     private static long score;
     private static int vida = 3;
     private static long monedas = 0;
+    private static long contador=0;
 
     private PropiedadesJugador() {
     }
@@ -27,6 +28,22 @@ public class PropiedadesJugador {
         return instance;
     }
 
+    public static long getContador() {
+        return contador;
+    }
+
+    public static void setContador(long contador) {
+        PropiedadesJugador.contador = contador;
+    }
+    
+    public static long getScore2() {
+        return score2;
+    }
+
+    public static void setScore2(long score2) {
+        PropiedadesJugador.score2 = score2;
+    }
+    
     public long getScore() {
         return score;
     }

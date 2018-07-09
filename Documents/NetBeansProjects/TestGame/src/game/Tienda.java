@@ -12,6 +12,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -21,12 +22,12 @@ import org.newdawn.slick.state.StateBasedGame;
  * @author fmolina
  */
 public class Tienda extends BasicGameState{
-    
+    private Input entrada;
     private Jugador jugador;
     Image bck, soldier, ret, coin, rage, buy, heart;
     public static final int ID = 3;
     public static PropiedadesJugador pd = PropiedadesJugador.getInstance(); //instancia del singleton
-
+    
     @Override
     public int getID() {
         return Tienda.ID;
@@ -42,7 +43,7 @@ public class Tienda extends BasicGameState{
         buy = new Image("data/buy.png");
         heart = new Image("data/heart2.png");
         jugador = new Jugador();
-        
+        entrada=gc.getInput();
     }
 
     @Override
@@ -63,6 +64,7 @@ public class Tienda extends BasicGameState{
         g.drawRect(800, 40, 100, 30);
         g.setColor(Color.black);
         coin.draw(800,40);
+        g.drawString("     "+((pd.getScore()/100)/5), 820, 43);
     }
 
     @Override
@@ -76,6 +78,30 @@ public class Tienda extends BasicGameState{
                 sbg.enterState(2);
             }
         }
+        else if((posX>380 && posX<600) && (posY>320 && posY<400)){
+            if(entrada.isMousePressed(0)){
+                long n=pd.getScore()-500;
+                if(pd.getScore()>=500){
+                pd.setVida(pd.getVida()+1);
+                //pd.setMonedas(pd.getMonedas()-1);
+                pd.setScore(n);
+            }
+        }
+        }
+        else if((posX>380 && posX<600) && (posY>110 && posY<190)){
+            if(entrada.isMousePressed(0)){
+               long cont=pd.getContador();
+               if(cont==0){
+                long n=pd.getScore()+500;
+                if(pd.getScore()>=500){
+                //pd.setScore(pd.getScore());
+                //pd.setMonedas(pd.getMonedas()-1);
+                pd.setContador(pd.getContador()+1);
+                pd.setScore(n);
+            }}
+        }
+        }
+        
     }
-    
+   
 }
