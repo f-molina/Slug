@@ -13,6 +13,7 @@ import Controlador.GestorColision;
 import Singleton.PropiedadesJugador;
 import java.util.ArrayList;
 import java.util.Random;
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -33,7 +34,7 @@ public class Game extends BasicGameState {
     private ControladorBala balas;
     private Jugador jugador;
     private Input entrada;
-    Image b, r, pause, heart, coin, bossMap, rock;
+    Image b, r, pause, heart, coin, bossMap, rock, pauseb;
     private boolean quit = false;
     private ControladorEnemigo enemigos;
     private Random numeros;
@@ -61,6 +62,7 @@ public class Game extends BasicGameState {
         b = new Image("data/b2.png");
         heart = new Image("data/heart.png");
         coin = new Image("data/coin.png");
+        pauseb = new Image("data/pauseb.png");
         
         //inicializadores
         jugador = new Jugador();
@@ -110,8 +112,7 @@ public class Game extends BasicGameState {
         //heart.draw(50,20);
         //heart.draw(90,20);
         
-        //debug x
-        g.drawString("x"+xMap, 350, 150);
+        pauseb.draw(850,20);
         
         //currency
         g.drawRect(10, 60, 100, 30);
@@ -171,9 +172,14 @@ public class Game extends BasicGameState {
             relojMeteoro=0;
         }
         
+        int posX = Mouse.getX();
+        int posY = Mouse.getY();
+        
         //teclado menu in-game
-        if(entrada.isKeyPressed(Input.KEY_ESCAPE)){
-            quit = true;
+        if((posX>850 && posX<908) && (posY>464 && posY<521)){
+            if(Mouse.isButtonDown(0)){
+                quit = true;
+            }
         }else if(entrada.isKeyPressed(Input.KEY_R)){
             quit = false;
             container.resume();
